@@ -111,12 +111,12 @@ export default function PagePreloader() {
   return (
     <div
       ref={containerRef}
-      className="fixed inset-0 z-[99999] flex items-center justify-center bg-[#171619] text-paper overflow-hidden select-none"
+      className="fixed inset-0 z-[99999] flex items-center justify-center bg-[#10264B] text-paper overflow-hidden select-none"
       style={{ willChange: 'transform' }}
-      aria-label="Loading CJ Roofing Services Ltd"
+      aria-label="Carregando BR GUEDES Engenharia e Montagem"
     >
       {/* Subtle Background Radial Aura */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(35,139,104,0.10)_0%,transparent_70%)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(21,89,184,0.18)_0%,transparent_70%)] pointer-events-none" />
 
       <div
         ref={contentRef}
@@ -125,11 +125,11 @@ export default function PagePreloader() {
         {/* Animated 3D Logo */}
         <div
           ref={logoRef}
-          className="relative w-20 h-20 sm:w-24 sm:h-24 bg-paper rounded-2xl shadow-2xl p-2.5 flex items-center justify-center mb-6 border border-[#FF3545]/40"
+          className="relative w-20 h-20 sm:w-24 sm:h-24 bg-paper rounded-2xl shadow-2xl p-2.5 flex items-center justify-center mb-6 border border-[#FF3B35]/40"
         >
           <Image
             src="/images/logo.png"
-            alt="CJ Roofing Services Ltd"
+            alt="BR GUEDES Engenharia e Montagem"
             width={80}
             height={80}
             priority
@@ -142,7 +142,7 @@ export default function PagePreloader() {
           ref={titleRef}
           className="font-display text-22 sm:text-30 md:text-36 font-medium text-paper uppercase tracking-[0.08em] leading-tight mb-3 text-shadow-sm"
         >
-          CJ Roofing Services Ltd
+          BR GUEDES Engenharia e Montagem
         </h1>
 
         {/* Delicate Golden-Lime Divider Line */}
@@ -156,7 +156,7 @@ export default function PagePreloader() {
           ref={subtitleRef}
           className="font-body text-12 sm:text-13 text-paper/85 uppercase tracking-[0.15em]"
         >
-          Dublin, Ireland • Open 24 hours
+          Volta Redonda, Rio de Janeiro · Atendimento de segunda a quinta, das 8h às 18h
         </p>
       </div>
     </div>

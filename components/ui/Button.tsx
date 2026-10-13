@@ -35,15 +35,15 @@ export default function Button({
 
   const variantStyles = {
     forest:
-      'bg-[#E51B2B] text-[#171619] hover:bg-[#FF3545] active:bg-[#E51B2B] shadow-sm',
+      'bg-[#10264B] text-white hover:bg-[#1559B8] active:bg-[#10264B] shadow-sm',
     ghost:
-      'bg-transparent text-[#1C1A1B] border border-[#E2DFE0] hover:border-[#1C1A1B] hover:text-[#6D696B] hover:bg-[#F7F7F7]/40',
+      'bg-transparent text-[#18243A] border border-[#D9E2EF] hover:border-[#18243A] hover:text-[#66758A] hover:bg-[#F2F6FC]/40',
     lime:
-      'bg-[#E51B2B] text-[#171619] hover:bg-[#FF3545] active:bg-[#E51B2B] shadow-sm',
+      'bg-[#F5C542] text-[#18243A] hover:bg-[#FF3B35] hover:text-white active:bg-[#F5C542] shadow-sm',
     red:
-      'bg-[#E51B2B] text-[#171619] hover:bg-[#FF3545] active:bg-[#E51B2B] shadow-sm',
+      'bg-[#E5242A] text-white hover:bg-[#FF3B35] active:bg-[#E5242A] shadow-sm',
     navy:
-      'bg-[#1C1A1B] text-paper hover:bg-[#1C1A1B] active:bg-[#6D696B] shadow-sm',
+      'bg-[#1559B8] text-white hover:bg-[#10264B] active:bg-[#1559B8] shadow-sm',
   };
 
   const combinedClasses = `${baseStyles} ${sizeStyles[size]} ${variantStyles[variant]} ${

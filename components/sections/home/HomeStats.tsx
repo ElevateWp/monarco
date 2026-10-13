@@ -1,6 +1,5 @@
 import React from 'react';
 import { CLINIC_INFO } from '@/lib/clinic-data';
-import CountingNumber from '@/components/motion/CountingNumber';
 import AnimateOnScroll from '@/components/motion/AnimateOnScroll';
 
 export default function HomeStats() {
@@ -19,11 +18,7 @@ export default function HomeStats() {
                 }`}
               >
                 <div className="font-display text-41 sm:text-52 lg:text-65 text-forest-ink leading-none mb-3">
-                  <CountingNumber
-                    value={stat.value}
-                    suffix={stat.suffix}
-                    decimals={0}
-                  />
+                  {stat.value}{stat.suffix}
                 </div>
                 <span className="font-body text-13 text-forest block font-medium mb-1">
                   {stat.label}

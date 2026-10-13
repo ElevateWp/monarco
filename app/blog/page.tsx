@@ -1,7 +1,7 @@
 import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { BLOG_POSTS, DENTISTS } from '@/lib/clinic-data';
+import { BLOG_POSTS } from '@/lib/clinic-data';
 import Breadcrumbs from '@/components/layout/Breadcrumbs';
 import WordRevealH1 from '@/components/motion/WordRevealH1';
 import TextureBackground from '@/components/layout/TextureBackground';
@@ -9,9 +9,9 @@ import AnimateOnScroll from '@/components/motion/AnimateOnScroll';
 import { createMetadata } from '@/lib/seo';
 
 export const metadata: Metadata = createMetadata({
-  title: 'Roofing Advice',
+  title: 'Dicas de construção',
   description:
-    'Practical advice on roof leaks, tiles, gutters and roof maintenance from CJ Roofing Services Ltd.',
+    'Conteúdos sobre planejamento de estruturas metálicas, engenharia e cuidados com telhados e coberturas.',
   pathname: '/blog/',
 });
 
@@ -23,17 +23,17 @@ export default function BlogIndexPage() {
         <TextureBackground variant="blog" className="opacity-20" />
 
         <div className="relative z-10 max-w-site mx-auto px-6 md:px-12">
-          <Breadcrumbs items={[{ name: 'Roofing Advice', path: '/blog/' }]} />
+          <Breadcrumbs items={[{ name: 'Dicas de construção', path: '/blog/' }]} />
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mt-8">
             <div className="lg:col-span-8">
               <AnimateOnScroll animation="fade-right" duration={0.8}>
                 <span className="font-body text-13 text-forest-ink/60 block mb-3 uppercase tracking-wider font-medium">
-                  Roofing Advice
+                  Dicas de construção
                 </span>
-                <WordRevealH1 text="Guidance on roof repair and maintenance." />
+                <WordRevealH1 text="Dicas úteis para a sua próxima obra." />
                 <p className="font-body text-17 md:text-21 text-forest-ink/90 leading-relaxed mt-6 max-w-2xl">
-                  Learn what to look for when you notice a roof leak, damaged tiles or storm damage.
+                  Confira orientações sobre estruturas metálicas, telhados e planejamento do projeto.
                 </p>
               </AnimateOnScroll>
             </div>
@@ -46,7 +46,6 @@ export default function BlogIndexPage() {
         <div className="max-w-site mx-auto px-6 md:px-12">
           <div className="divide-y divide-mist border-t border-b border-mist">
             {BLOG_POSTS.map((post, idx) => {
-              const author = DENTISTS.find((d) => d.id === post.authorId) || DENTISTS[0];
               return (
                 <AnimateOnScroll key={post.slug} animation="fade-up" delay={idx * 0.1}>
                   <article className="py-8 md:py-10 group transition-colors">
@@ -67,11 +66,7 @@ export default function BlogIndexPage() {
                         <p className="font-body text-15 text-forest-ink/80 leading-relaxed mb-4">
                           {post.excerpt}
                         </p>
-                        {author && (
-                          <span className="font-body text-13 text-forest-ink/60 block">
-                            By {author.name} • {author.title}
-                          </span>
-                        )}
+                        <span className="font-body text-13 text-forest-ink/60 block">Por BR GUEDES Engenharia e Montagem</span>
                       </div>
 
                       {/* Action */}
@@ -80,7 +75,7 @@ export default function BlogIndexPage() {
                           href={`/blog/${post.slug}/`}
                           className="font-body text-13 text-forest font-medium underline underline-offset-4 group-hover:text-forest-light"
                         >
-                          Read Article →
+                          Ler artigo →
                         </Link>
                       </div>
                     </div>

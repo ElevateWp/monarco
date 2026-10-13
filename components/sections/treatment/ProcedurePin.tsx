@@ -26,8 +26,8 @@ interface ProcedurePinProps {
 
 export default function ProcedurePin({
   steps,
-  title = 'Work Stages',
-  subtitle = 'Repair Process',
+  title = 'Etapas do serviço',
+  subtitle = 'Como funciona',
   className = '',
 }: ProcedurePinProps) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -71,13 +71,13 @@ export default function ProcedurePin({
           <div className="hidden lg:block lg:col-span-5">
             <div className="sticky top-28 p-8 bg-paper border border-mist">
               <span className="font-body text-13 text-forest uppercase tracking-wider block mb-2 font-medium">
-                Current Step {activeStep + 1} of {steps.length}
+                Etapa atual {activeStep + 1} de {steps.length}
               </span>
               <h3 className="font-display text-26 md:text-33 text-forest-ink mb-4">
                 {steps[activeStep]?.title}
               </h3>
               <div className="inline-block bg-mist/60 px-3 py-1 text-13 font-body text-forest-ink/80 mb-6">
-                Estimated Duration: {steps[activeStep]?.duration}
+                Prazo estimado: {steps[activeStep]?.duration}
               </div>
               <p className="font-body text-15 text-forest-ink/80 leading-relaxed mb-6">
                 {steps[activeStep]?.clinicalDetails}
@@ -118,7 +118,7 @@ export default function ProcedurePin({
                 }`}
               >
                 <div className="flex flex-wrap items-center justify-between gap-2 mb-3 sm:mb-4">
-                  <span className="font-display text-21 sm:text-26 text-forest">Step 0{step.stepNumber}</span>
+                  <span className="font-display text-21 sm:text-26 text-forest">Etapa {String(step.stepNumber).padStart(2, '0')}</span>
                   <span className="font-body text-13 text-forest-ink/60 bg-mist/50 px-2.5 py-0.5 rounded-full">
                     {step.duration}
                   </span>
@@ -131,7 +131,7 @@ export default function ProcedurePin({
                 </p>
                 <div className="p-3.5 sm:p-4 bg-mist/40 border-l-2 border-forest">
                   <span className="font-body text-13 text-forest-ink/80 block">
-                    <strong className="text-forest font-medium">Details:</strong>{' '}
+                    <strong className="text-forest font-medium">Observações:</strong>{' '}
                     {step.clinicalDetails}
                   </span>
                 </div>

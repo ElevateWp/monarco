@@ -1,20 +1,20 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { CLINIC_INFO, SERVICES, DENTISTS } from '@/lib/clinic-data';
+import { CLINIC_INFO, SERVICES } from '@/lib/clinic-data';
 
 export default function Footer() {
   return (
     <footer className="w-full bg-forest text-paper border-t border-mist/20 pt-16 md:pt-24 pb-12">
       <div className="max-w-site mx-auto px-6 md:px-12">
-        {/* Top section: company summary and urgent roofing contact */}
+        {/* Top section: store summary and contact */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 pb-16 border-b border-mist/20">
           <div className="lg:col-span-6">
             <div className="flex items-center gap-4 mb-5">
               <div className="w-14 h-14 sm:w-16 sm:h-16 bg-paper rounded-xl p-2 flex items-center justify-center flex-shrink-0 shadow-md">
                 <Image
                   src="/images/logo.png"
-                  alt="CJ Roofing Services Ltd logo"
+                  alt="Logotipo do BR GUEDES Engenharia e Montagem"
                   width={60}
                   height={60}
                   className="object-contain w-full h-full"
@@ -22,43 +22,43 @@ export default function Footer() {
               </div>
               <div className="flex flex-col">
                 <span className="font-display text-24 md:text-30 font-medium leading-tight">
-                  CJ Roofing Services Ltd
+                  BR GUEDES Engenharia e Montagem
                 </span>
                 <span className="font-body text-13 text-paper/70 font-medium">
-                  Roof repairs and replacements
+                  Engenharia e montagem
                 </span>
               </div>
             </div>
             <p className="font-body text-16 text-paper/80 leading-relaxed max-w-xl">
-              Our Dublin roofing team brings over 10 years of experience to every project.
+              Soluções em estruturas metálicas, telhados e coberturas em Volta Redonda, Rio de Janeiro.
             </p>
             <div className="mt-6 flex flex-wrap gap-4 text-13 text-paper/60">
-              <span>+353 1 556 3783</span>
+              <span>{CLINIC_INFO.contact.phone}</span>
             </div>
           </div>
 
           <div className="lg:col-span-6 lg:pl-12 flex flex-col justify-between">
             <div className="p-6 bg-paper/5 border border-mist/20 rounded-none shadow-sm">
               <span className="font-body text-13 text-lime block mb-2 font-semibold uppercase tracking-wider">
-                Roofing help, around the clock
+                Fale com a nossa equipe
               </span>
               <p className="font-body text-15 text-paper/90 mb-4">
-                Need a roof inspection, repair or replacement? Contact our team.
+                Converse sobre o escopo e as necessidades do seu projeto.
               </p>
               <div className="flex flex-wrap items-center gap-4">
                 <a
-                  href="tel:+35315563783"
+                  href={`tel:${CLINIC_INFO.contact.phone.replace(/[^0-9+]/g, '')}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="font-body text-15 font-semibold text-lime hover:underline"
                 >
-                  Call: {CLINIC_INFO.contact.phone}
+                  Telefone: {CLINIC_INFO.contact.phone}
                 </a>
                 <Link
-                  href="/book-appointment/"
+                  href="https://www.google.com/maps/search/?api=1&query=Av.+Alm.+Adalberto+de+Barros+Nunes+5501+Siderlandia+Volta+Redonda+RJ+27274-200+Brazil"
                   className="font-body text-13 text-paper/80 underline underline-offset-4 hover:text-paper"
                 >
-                  Request a Quote
+                  Como chegar
                 </Link>
               </div>
             </div>
@@ -70,7 +70,7 @@ export default function Footer() {
           {/* Column 1: technical Treatments */}
           <div className="col-span-1">
             <span className="font-body text-13 text-paper/40 uppercase tracking-wider block mb-4 font-semibold">
-              Services
+              Serviços
             </span>
             <ul className="space-y-2.5 font-body text-15">
               {SERVICES.map((s) => (
@@ -89,56 +89,46 @@ export default function Footer() {
           {/* Column 2: technical Team */}
           <div className="col-span-1">
             <span className="font-body text-13 text-paper/40 uppercase tracking-wider block mb-4 font-semibold">
-              Our Team
+              Avaliações
             </span>
             <ul className="space-y-2.5 font-body text-15">
               <li>
-                <Link href="/dentists/" className="text-paper/80 hover:text-lime transition-colors">
-                  Meet the Roofing Team
+                <Link href="/testimonials/" className="text-paper/80 hover:text-lime transition-colors">
+                  Depoimentos
                 </Link>
               </li>
-              {DENTISTS.map((d) => (
-                <li key={d.slug}>
-                  <Link
-                    href={`/dentists/${d.slug}/`}
-                    className="text-paper/80 hover:text-lime transition-colors"
-                  >
-                    {d.name}
-                  </Link>
-                </li>
-              ))}
             </ul>
           </div>
 
           {/* Column 3: The company */}
           <div className="col-span-1">
             <span className="font-body text-13 text-paper/40 uppercase tracking-wider block mb-4 font-semibold">
-              Company
+              Empresa
             </span>
             <ul className="space-y-2.5 font-body text-15">
               <li>
                 <Link href="/about/" className="text-paper/80 hover:text-lime transition-colors">
-                  About Us
+                  Sobre
                 </Link>
               </li>
               <li>
                 <Link href="/blog/" className="text-paper/80 hover:text-lime transition-colors">
-                  Roofing Advice
+                  Artigos técnicos
                 </Link>
               </li>
               <li>
-                <Link href="/book-appointment/" className="text-paper/80 hover:text-lime transition-colors">
-                  Request a Quote
+                <Link href="/solicitar-orcamento/" className="text-paper/80 hover:text-lime transition-colors">
+                  Solicitar orçamento
                 </Link>
               </li>
               <li>
                 <Link href="/contact/" className="text-paper/80 hover:text-lime transition-colors">
-                  Contact
+                  Contato
                 </Link>
               </li>
               <li>
-                <Link href="/emergency-dentist/" className="text-paper/80 hover:text-lime transition-colors">
-                  Emergency Roof Repairs
+                <Link href={`tel:${CLINIC_INFO.contact.phone.replace(/[^0-9+]/g, '')}`} className="text-paper/80 hover:text-lime transition-colors">
+                  Ligar para a empresa
                 </Link>
               </li>
             </ul>
@@ -147,13 +137,13 @@ export default function Footer() {
           {/* Column 4: Contact Info */}
           <div className="col-span-1 md:col-span-1 lg:col-span-2">
             <span className="font-body text-13 text-paper/40 uppercase tracking-wider block mb-4 font-semibold">
-              Contact Details
+              Dados de contato
             </span>
             <div className="space-y-3 font-body text-15 text-paper/80">
               <div>
-                <span className="text-paper/50 block text-13">Phone:</span>
+                <span className="text-paper/50 block text-13">Telefone:</span>
                 <a
-                  href="tel:+35315563783"
+                  href={`tel:${CLINIC_INFO.contact.phone.replace(/[^0-9+]/g, '')}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-lime transition-colors font-medium"
@@ -162,7 +152,7 @@ export default function Footer() {
                 </a>
               </div>
               <div>
-                <span className="text-paper/50 block text-13">Service area:</span>
+                <span className="text-paper/50 block text-13">Endereço:</span>
                 <address className="not-italic leading-relaxed text-13 text-paper/70">
                   {CLINIC_INFO.primaryLocation.directions}
                 </address>
@@ -174,11 +164,11 @@ export default function Footer() {
         {/* Bottom Section: Legal & Copyright */}
         <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 font-body text-13 text-paper/60">
           <div>
-            © {new Date().getFullYear()} {CLINIC_INFO.legalName}. All rights reserved.
+            © {new Date().getFullYear()} {CLINIC_INFO.legalName}. Todos os direitos reservados.
           </div>
           <div className="flex items-center gap-6">
-            <span>Open 24 hours</span>
-            <span>CJ Roofing Services Ltd</span>
+            <span>Aberto de segunda a quinta, das 8h às 18h</span>
+            <span>BR GUEDES Engenharia e Montagem</span>
           </div>
         </div>
       </div>

@@ -10,19 +10,19 @@ export default function HomeBeforeAfter() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <AnimateOnScroll animation="fade-right" duration={0.85} className="lg:col-span-5">
             <span className="font-body text-13 text-forest-ink/60 block mb-2 font-medium uppercase tracking-wider">
-              Roofing Services
+              Engenharia e montagem
             </span>
             <h2 className="font-display text-33 md:text-41 text-forest-ink mb-6">
-              Care for every roof
+              Estruturas metálicas e coberturas
             </h2>
             <p className="font-body text-15 md:text-17 text-forest-ink/80 leading-relaxed mb-6">
-              Explore examples of roof replacement and repair work from our project gallery.
+              A BR GUEDES atua com soluções de fabricação e montagem para telhados, coberturas e estruturas metálicas.
             </p>
             <Link
-              href="/dental-implants/"
+              href="/about/"
               className="font-body text-15 text-forest font-medium hover:underline underline-offset-4"
             >
-              Explore Roof Repairs →
+              Conheça a empresa →
             </Link>
           </AnimateOnScroll>
 
@@ -30,26 +30,26 @@ export default function HomeBeforeAfter() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="relative aspect-[4/3] bg-mist overflow-hidden border border-mist shadow-sm">
                 <Image
-                  src="/images/m7.jpg"
-                  alt="Roof structure before replacement work"
+                  src="/images/stock-welding-brazil.jpg"
+                  alt="Soldagem em uma estrutura metálica, imagem ilustrativa"
                   fill
                   sizes="(max-width: 640px) 100vw, 50vw"
                   className="object-cover"
                 />
-                <span className="absolute bottom-3 left-3 bg-[#171619]/85 text-white font-body text-12 px-3 py-1">
-                  Roof repair in progress
+                <span className="absolute bottom-3 left-3 bg-[#10264B]/85 text-white font-body text-12 px-3 py-1">
+                  Fabricação metálica
                 </span>
               </div>
               <div className="relative aspect-[4/3] bg-mist overflow-hidden border border-mist shadow-sm">
                 <Image
-                  src="/images/IMG-20181001-WA0014.jpg"
-                  alt="Completed slate roof installation"
+                  src="/images/stock-roof-structure.jpg"
+                  alt="Estrutura metálica de cobertura, imagem ilustrativa"
                   fill
                   sizes="(max-width: 640px) 100vw, 50vw"
                   className="object-cover"
                 />
-                <span className="absolute bottom-3 left-3 bg-[#171619]/85 text-white font-body text-12 px-3 py-1">
-                  Completed roofing work
+                <span className="absolute bottom-3 left-3 bg-[#10264B]/85 text-white font-body text-12 px-3 py-1">
+                  Telhados e coberturas
                 </span>
               </div>
             </div>

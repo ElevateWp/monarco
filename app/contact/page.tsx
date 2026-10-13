@@ -9,31 +9,31 @@ import AnimateOnScroll from '@/components/motion/AnimateOnScroll';
 import { createMetadata } from '@/lib/seo';
 
 export const metadata: Metadata = createMetadata({
-  title: 'Contact and Service Area',
+  title: 'Contato e localização',
   description:
-    'Contact CJ Roofing Services Ltd on +353 1 556 3783. We provide roofing services across Dublin and are open 24 hours.',
+    'Entre em contato com a BR GUEDES Engenharia e Montagem para conversar sobre estruturas metálicas, telhados e coberturas em Volta Redonda, RJ.',
   pathname: '/contact/',
 });
 
 export default function ContactPage() {
   return (
     <div className="flex flex-col w-full bg-paper">
-      {/* SECTION 1: Contact Introduction */}
+      {/* Introdução de contato */}
       <section className="relative py-16 md:py-24 border-b border-mist overflow-hidden">
-        <TextureBackground variant="Contato" className="opacity-30" />
+        <TextureBackground variant="contact" className="opacity-30" />
 
         <div className="relative z-10 max-w-site mx-auto px-6 md:px-12">
-          <Breadcrumbs items={[{ name: 'Contact', path: '/contact/' }]} />
+          <Breadcrumbs items={[{ name: 'Contato', path: '/contact/' }]} />
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mt-8">
             <div className="lg:col-span-8">
               <AnimateOnScroll animation="fade-right" duration={0.8}>
                 <span className="font-body text-13 text-forest-ink/60 block mb-3 uppercase tracking-wider font-medium">
-                  Contact & Quotes
+                  Engenharia e montagem
                 </span>
-                <WordRevealH1 text="Talk to our roofing team." />
+                <WordRevealH1 text="Fale com a nossa equipe." />
                 <p className="font-body text-17 md:text-21 text-forest-ink/90 leading-relaxed mt-6 max-w-2xl">
-                  Call us to discuss your roof replacement, repair or inspection.
+                  Ligue para conversar sobre o seu projeto de estruturas metálicas ou coberturas.
                 </p>
               </AnimateOnScroll>
             </div>
@@ -50,17 +50,17 @@ export default function ContactPage() {
               <AnimateOnScroll animation="fade-right" duration={0.8}>
                 <div>
                   <span className="font-body text-13 text-forest-ink/60 block mb-2 font-medium uppercase tracking-wider">
-                    Get in Touch
+                    Fale conosco
                   </span>
                   <h2 className="font-display text-26 md:text-33 text-forest-ink mb-6">
-                    Contact Us
+                    Fale conosco
                   </h2>
 
                   <div className="divide-y divide-mist border-t border-b border-mist">
                     {/* Call */}
                     <div className="py-5 flex flex-col sm:flex-row sm:items-center justify-between gap-2 bg-mist/30 px-4 -mx-4 rounded-sm">
                       <div>
-                        <span className="font-body text-13 text-forest font-semibold block">Call our team</span>
+                        <span className="font-body text-13 text-forest font-semibold block">Ligue para nossa equipe</span>
                         <a
                           href={`tel:${CLINIC_INFO.contact.phone.replace(/[^0-9+]/g, '')}`}
                           target="_blank"
@@ -70,13 +70,13 @@ export default function ContactPage() {
                           {CLINIC_INFO.contact.phone}
                         </a>
                       </div>
-                      <span className="font-body text-13 text-forest font-medium">Roofing enquiries</span>
+                      <span className="font-body text-13 text-forest font-medium">Dúvidas sobre o projeto</span>
                     </div>
 
                     {/* Phone */}
                     <div className="py-5 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                       <div>
-                        <span className="font-body text-13 text-forest-ink/60 block">Phone</span>
+                        <span className="font-body text-13 text-forest-ink/60 block">Telefone</span>
                         <a
                           href={`tel:${CLINIC_INFO.contact.phone.replace(/[^0-9+]/g, '')}`}
                           className="font-display text-21 text-forest hover:underline"
@@ -84,7 +84,7 @@ export default function ContactPage() {
                           {CLINIC_INFO.contact.phone}
                         </a>
                       </div>
-                      <span className="font-body text-13 text-forest-ink/60">Open 24 hours</span>
+                      <span className="font-body text-13 text-forest-ink/60">Consulte o horário de atendimento abaixo</span>
                     </div>
 
                   </div>
@@ -95,16 +95,16 @@ export default function ContactPage() {
               <AnimateOnScroll animation="fade-up" duration={0.8} delay={0.2}>
                 <div>
                   <span className="font-body text-13 text-forest-ink/60 block mb-2 font-medium uppercase tracking-wider">
-                    Service Area
+                    Localização
                   </span>
                   <h3 className="font-display text-21 text-forest-ink mb-3">
                     {CLINIC_INFO.name}
                   </h3>
                   <address className="not-italic font-body text-15 text-forest-ink/90 leading-relaxed mb-4">
-                    Dublin, Ireland
+                    Volta Redonda, Rio de Janeiro, Brasil
                   </address>
                   <div className="p-4 bg-mist/40 border-l-2 border-forest font-body text-13 text-forest-ink/80 leading-relaxed">
-                    <strong>Service area:</strong> {CLINIC_INFO.primaryLocation.directions}
+                    <strong>Endereço:</strong> {CLINIC_INFO.primaryLocation.directions}
                   </div>
                 </div>
               </AnimateOnScroll>
@@ -115,7 +115,7 @@ export default function ContactPage() {
               <AnimateOnScroll animation="fade-left" duration={0.8}>
                 <div>
                   <span className="font-body text-13 text-forest-ink/60 block mb-2 font-medium uppercase tracking-wider">
-                    Opening Hours
+                    Horário de funcionamento
                   </span>
                   <div className="border border-mist divide-y divide-mist bg-paper font-body text-13 shadow-sm">
                     {CLINIC_INFO.schedule.map((item) => (
@@ -133,7 +133,7 @@ export default function ContactPage() {
                 <div className="p-8 bg-forest text-paper flex flex-col justify-between aspect-[16/10] shadow-sm">
                   <div>
                     <span className="font-body text-13 text-lime block mb-2 font-medium uppercase tracking-wider">
-                      Service Area
+                      Localização
                     </span>
                     <h3 className="font-display text-26 text-paper mb-2">
                       {CLINIC_INFO.name}
@@ -149,7 +149,7 @@ export default function ContactPage() {
                       variant="lime"
                       size="sm"
                     >
-                      Call our team
+                      Ligar para nossa equipe
                     </Button>
                     <a
                       href={`tel:${CLINIC_INFO.contact.phone.replace(/[^0-9+]/g, '')}`}
@@ -157,7 +157,7 @@ export default function ContactPage() {
                       rel="noopener noreferrer"
                       className="font-body text-13 text-lime hover:underline font-semibold"
                     >
-                      Call: {CLINIC_INFO.contact.phone}
+                      Telefone: {CLINIC_INFO.contact.phone}
                     </a>
                   </div>
                 </div>
@@ -173,16 +173,16 @@ export default function ContactPage() {
           <AnimateOnScroll animation="fade-right" duration={0.8}>
             <div>
               <span className="font-body text-13 text-lime uppercase tracking-wider block mb-2 font-medium">
-                Roof Assessment Quote
+                Converse sobre o seu projeto
               </span>
               <h2 className="font-display text-33 md:text-41 text-paper">
-                Ready to request a quote?
+                Precisa de uma solução em estruturas metálicas?
               </h2>
             </div>
           </AnimateOnScroll>
           <AnimateOnScroll animation="fade-left" duration={0.8} delay={0.2}>
-            <Button href="/book-appointment/" variant="lime" size="lg">
-              Request a Quote Online
+            <Button href="/solicitar-orcamento/" variant="lime" size="lg">
+              Solicitar orçamento
             </Button>
           </AnimateOnScroll>
         </div>

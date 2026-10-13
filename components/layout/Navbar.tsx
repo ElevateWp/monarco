@@ -46,8 +46,8 @@ export default function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled || mobileMenuOpen
-          ? 'bg-paper/95 backdrop-blur-md py-2 sm:py-2.5 border-b border-[#E2DFE0]/80 shadow-[0_4px_24px_rgba(0,0,0,0.06)]'
-          : 'bg-paper/95 md:bg-paper/90 backdrop-blur-md py-2.5 sm:py-3 border-b border-[#E2DFE0] shadow-sm'
+          ? 'bg-paper/95 backdrop-blur-md py-2 sm:py-2.5 border-b border-[#D9E2EF]/80 shadow-[0_4px_24px_rgba(0,0,0,0.06)]'
+          : 'bg-paper/95 md:bg-paper/90 backdrop-blur-md py-2.5 sm:py-3 border-b border-[#D9E2EF] shadow-sm'
       }`}
     >
       <div className="max-w-site mx-auto px-4 sm:px-6 md:px-12 flex items-center justify-between">
@@ -55,11 +55,11 @@ export default function Navbar() {
         <Link
           href="/"
           className="group flex items-center no-underline focus-visible:outline-offset-4 flex-shrink-0 min-w-0"
-          aria-label="CJ Roofing Services Ltd"
+          aria-label="BR GUEDES Engenharia e Montagem"
         >
           <Image
             src="/images/logo.png"
-            alt="CJ Roofing Services Ltd logo"
+            alt="BR GUEDES Engenharia e Montagem logo"
             width={180}
             height={100}
             priority
@@ -68,7 +68,7 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop Primary Navigation (Active on xl screens >= 1200px) */}
-        <nav className="hidden xl:flex items-center gap-7 2xl:gap-8" aria-label="Main navigation">
+        <nav className="hidden xl:flex items-center gap-7 2xl:gap-8" aria-label="Navegação principal">
           {/* Services Dropdown */}
           <div
             className="relative"
@@ -78,19 +78,15 @@ export default function Navbar() {
             <button
               type="button"
               className={`font-body text-15 py-2 transition-colors flex items-center gap-1.5 cursor-pointer ${
-                pathname?.includes('dental-') ||
-                pathname?.includes('root-canal') ||
-                pathname?.includes('teeth-whitening') ||
-                pathname?.includes('braces') ||
-                pathname?.includes('cosmetic-dentistry')
-                  ? 'text-[#1C1A1B] font-semibold'
-                  : 'text-[#1C1A1B]/80 hover:text-[#6D696B] font-medium'
+                SERVICES.some((service) => pathname === `/${service.slug}/`)
+                  ? 'text-[#18243A] font-semibold'
+                  : 'text-[#18243A]/80 hover:text-[#66758A] font-medium'
               }`}
               aria-expanded={servicesDropdownOpen}
             >
-              <span>Services</span>
+          <span>Serviços</span>
               <span
-                className={`w-1.5 h-1.5 border-r border-b border-[#1C1A1B]/60 transition-transform duration-200 ${
+                className={`w-1.5 h-1.5 border-r border-b border-[#18243A]/60 transition-transform duration-200 ${
                   servicesDropdownOpen ? '-rotate-135 -translate-y-0.5' : 'rotate-45 translate-y-[-2px]'
                 }`}
                 aria-hidden="true"
@@ -100,7 +96,7 @@ export default function Navbar() {
             {/* Dropdown Panel with Pure White Background and Smooth Shadow */}
             {servicesDropdownOpen && (
               <div className="absolute top-full -left-4 pt-2 w-64 z-50 animate-fade-in">
-                <div className="p-2 bg-paper border border-[#E2DFE0] shadow-[0_12px_36px_rgba(17,17,17,0.08)] rounded-2xl">
+                <div className="p-2 bg-paper border border-[#D9E2EF] shadow-[0_12px_36px_rgba(17,17,17,0.08)] rounded-2xl">
                   <div className="space-y-0.5">
                     {SERVICES.map((s) => (
                       <Link
@@ -108,8 +104,8 @@ export default function Navbar() {
                         href={`/${s.slug}/`}
                         className={`block px-3.5 py-2 text-14 font-body transition-all duration-200 rounded-xl ${
                           pathname === `/${s.slug}/`
-                            ? 'bg-[#F7F7F7] text-[#1C1A1B] font-semibold shadow-xs'
-                            : 'text-[#1C1A1B]/85 hover:bg-[#F7F7F7]/50 hover:text-[#6D696B] hover:translate-x-1'
+                            ? 'bg-[#F2F6FC] text-[#18243A] font-semibold shadow-xs'
+                            : 'text-[#18243A]/85 hover:bg-[#F2F6FC]/50 hover:text-[#66758A] hover:translate-x-1'
                         }`}
                       >
                         <span className="block font-medium">{s.navLabel}</span>
@@ -125,86 +121,86 @@ export default function Navbar() {
             href="/about/"
             className={`font-body text-15 py-2 transition-colors ${
               pathname === '/about/'
-                ? 'text-[#1C1A1B] font-semibold'
-                : 'text-[#1C1A1B]/80 hover:text-[#6D696B] font-medium'
+                ? 'text-[#18243A] font-semibold'
+                : 'text-[#18243A]/80 hover:text-[#66758A] font-medium'
             }`}
           >
-            About Us
+            Sobre
           </Link>
 
           <Link
-            href="/dentists/"
+            href="/testimonials/"
             className={`font-body text-15 py-2 transition-colors ${
-              pathname?.startsWith('/dentists')
-                ? 'text-[#1C1A1B] font-semibold'
-                : 'text-[#1C1A1B]/80 hover:text-[#6D696B] font-medium'
+              pathname?.startsWith('/testimonials')
+                ? 'text-[#18243A] font-semibold'
+                : 'text-[#18243A]/80 hover:text-[#66758A] font-medium'
             }`}
           >
-            Our Team
+            Depoimentos
           </Link>
 
           <Link
             href="/blog/"
             className={`font-body text-15 py-2 transition-colors ${
               pathname?.startsWith('/blog')
-                ? 'text-[#1C1A1B] font-semibold'
-                : 'text-[#1C1A1B]/80 hover:text-[#6D696B] font-medium'
+                ? 'text-[#18243A] font-semibold'
+                : 'text-[#18243A]/80 hover:text-[#66758A] font-medium'
             }`}
           >
-            Roofing Tips
+            Artigos técnicos
           </Link>
 
           <Link
             href="/contact/"
             className={`font-body text-15 py-2 transition-colors ${
               pathname === '/contact/'
-                ? 'text-[#1C1A1B] font-semibold'
-                : 'text-[#1C1A1B]/80 hover:text-[#6D696B] font-medium'
+                ? 'text-[#18243A] font-semibold'
+                : 'text-[#18243A]/80 hover:text-[#66758A] font-medium'
             }`}
           >
-            Contact
+            Contato
           </Link>
         </nav>
 
         <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
           <Link
-            href="/emergency-dentist/"
-            className="hidden xl:inline-flex h-10 w-[176px] items-center justify-center rounded-md border border-[#E51B2B] bg-[#E51B2B] px-3 font-body text-13 font-semibold text-white transition-colors hover:border-[#FF3545] hover:bg-[#FF3545] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E51B2B] whitespace-nowrap"
+            href="https://www.google.com/maps/search/?api=1&query=Av.+Alm.+Adalberto+de+Barros+Nunes+5501+Siderlandia+Volta+Redonda+RJ+27274-200+Brazil"
+            className="hidden xl:inline-flex h-10 w-[176px] items-center justify-center rounded-md border border-[#E5242A] bg-[#E5242A] px-3 font-body text-13 font-semibold text-white transition-colors hover:border-[#FF3B35] hover:bg-[#FF3B35] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E5242A] whitespace-nowrap"
           >
-            <span>Emergency Roof Repairs</span>
+            <span>Como chegar</span>
           </Link>
 
           <Button
-            href="/book-appointment/"
+            href={`tel:${CLINIC_INFO.contact.phone.replace(/[^0-9+]/g, '')}`}
             variant="forest"
             size="sm"
             className="hidden xl:inline-flex h-9 w-[160px] items-center justify-center gap-2 px-2 text-12 sm:text-13 font-semibold whitespace-nowrap"
           >
-            <span>Get a Quote</span>
+            <span>Ligar para a empresa</span>
           </Button>
 
           {/* Mobile / Tablet Hamburger Toggle */}
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="xl:hidden p-2 text-[#1C1A1B] focus-visible:outline-offset-2 flex items-center justify-center cursor-pointer rounded-lg hover:bg-[#F7F7F7] transition-colors"
-            aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+            className="xl:hidden p-2 text-[#18243A] focus-visible:outline-offset-2 flex items-center justify-center cursor-pointer rounded-lg hover:bg-[#F2F6FC] transition-colors"
+            aria-label={mobileMenuOpen ? 'Fechar menu' : 'Abrir menu'}
             aria-controls="mobile-navigation"
             aria-expanded={mobileMenuOpen}
           >
             <div className="w-6 h-5 relative flex flex-col justify-between">
               <span
-                className={`w-full h-[2px] bg-[#1C1A1B] transition-transform duration-250 ${
+                className={`w-full h-[2px] bg-[#18243A] transition-transform duration-250 ${
                   mobileMenuOpen ? 'rotate-45 translate-y-2' : ''
                 }`}
               />
               <span
-                className={`w-full h-[2px] bg-[#1C1A1B] transition-opacity duration-200 ${
+                className={`w-full h-[2px] bg-[#18243A] transition-opacity duration-200 ${
                   mobileMenuOpen ? 'opacity-0' : 'opacity-100'
                 }`}
               />
               <span
-                className={`w-full h-[2px] bg-[#1C1A1B] transition-transform duration-250 ${
+                className={`w-full h-[2px] bg-[#18243A] transition-transform duration-250 ${
                   mobileMenuOpen ? '-rotate-45 -translate-y-2' : ''
                 }`}
               />
@@ -217,9 +213,9 @@ export default function Navbar() {
       {/* Mobile / Tablet Drawer Menu */}
       <div
         id="mobile-navigation"
-        aria-label="Mobile navigation"
+        aria-label="Navegação móvel"
         aria-hidden={!mobileMenuOpen}
-        className={`xl:hidden fixed inset-x-0 top-[95px] sm:top-[110px] md:top-[121px] bottom-0 bg-paper border-t border-[#E2DFE0] overflow-y-auto overscroll-contain px-4 sm:px-6 py-5 sm:py-6 flex flex-col justify-between z-[999] transition-all duration-300 ease-in-out shadow-2xl ${
+        className={`xl:hidden fixed inset-x-0 top-[95px] sm:top-[110px] md:top-[121px] bottom-0 bg-paper border-t border-[#D9E2EF] overflow-y-auto overscroll-contain px-4 sm:px-6 py-5 sm:py-6 flex flex-col justify-between z-[999] transition-all duration-300 ease-in-out shadow-2xl ${
           mobileMenuOpen
             ? 'opacity-100 pointer-events-auto translate-y-0'
             : 'opacity-0 pointer-events-none -translate-y-4'
@@ -232,14 +228,14 @@ export default function Navbar() {
               onClick={() => setMobileServicesOpen((open) => !open)}
               aria-expanded={mobileServicesOpen}
               aria-controls="mobile-services-list"
-              className="flex min-h-12 w-full items-center justify-between py-2 text-left font-body text-13 font-bold uppercase tracking-wider text-[#1C1A1B]"
+              className="flex min-h-12 w-full items-center justify-between py-2 text-left font-body text-13 font-bold uppercase tracking-wider text-[#18243A]"
             >
-              <span>Services</span>
+              <span>Serviços</span>
               <svg
                 viewBox="0 0 24 24"
                 fill="none"
                 aria-hidden="true"
-                className={`mr-1 h-4 w-4 text-[#1C1A1B]/70 transition-transform duration-200 ${
+                className={`mr-1 h-4 w-4 text-[#18243A]/70 transition-transform duration-200 ${
                   mobileServicesOpen ? 'rotate-180' : 'rotate-0'
                 }`}
               >
@@ -258,8 +254,8 @@ export default function Navbar() {
                     }}
                     className={`flex min-h-11 items-center rounded-md px-3 font-body text-15 transition-colors ${
                       pathname === `/${s.slug}/`
-                        ? 'bg-[#FCE5E7] font-semibold text-[#1C1A1B]'
-                        : 'text-[#1C1A1B] hover:bg-[#F7F7F7] hover:text-[#6D696B]'
+                        ? 'bg-[#DCEBFA] font-semibold text-[#18243A]'
+                        : 'text-[#18243A] hover:bg-[#F2F6FC] hover:text-[#66758A]'
                     }`}
                   >
                     {s.navLabel}
@@ -269,68 +265,68 @@ export default function Navbar() {
             )}
           </div>
 
-          <div className="pt-4 border-t border-[#E2DFE0] flex flex-col space-y-3">
+          <div className="pt-4 border-t border-[#D9E2EF] flex flex-col space-y-3">
             <Link
               href="/about/"
               onClick={() => setMobileMenuOpen(false)}
               className={`font-body text-16 transition-colors ${
-                pathname === '/about/' ? 'text-[#1C1A1B] font-semibold' : 'text-[#1C1A1B] hover:text-[#6D696B]'
+                pathname === '/about/' ? 'text-[#18243A] font-semibold' : 'text-[#18243A] hover:text-[#66758A]'
               }`}
             >
-              About Us
+              Sobre
             </Link>
             <Link
-              href="/dentists/"
+              href="/testimonials/"
               onClick={() => setMobileMenuOpen(false)}
               className={`font-body text-16 transition-colors ${
-                pathname?.startsWith('/dentists') ? 'text-[#1C1A1B] font-semibold' : 'text-[#1C1A1B] hover:text-[#6D696B]'
+              pathname?.startsWith('/testimonials') ? 'text-[#18243A] font-semibold' : 'text-[#18243A] hover:text-[#66758A]'
               }`}
             >
-              Our Team
+              Depoimentos
             </Link>
             <Link
-              href="/emergency-dentist/"
+              href="https://www.google.com/maps/search/?api=1&query=Av.+Alm.+Adalberto+de+Barros+Nunes+5501+Siderlandia+Volta+Redonda+RJ+27274-200+Brazil"
               onClick={() => setMobileMenuOpen(false)}
-              className={`font-body text-16 font-semibold text-[#1C1A1B] hover:underline`}
+              className={`font-body text-16 font-semibold text-[#18243A] hover:underline`}
             >
-              Emergency Repairs
+              Como chegar
             </Link>
             <Link
               href="/blog/"
               onClick={() => setMobileMenuOpen(false)}
               className={`font-body text-16 transition-colors ${
-                pathname?.startsWith('/blog') ? 'text-[#1C1A1B] font-semibold' : 'text-[#1C1A1B] hover:text-[#6D696B]'
+                pathname?.startsWith('/blog') ? 'text-[#18243A] font-semibold' : 'text-[#18243A] hover:text-[#66758A]'
               }`}
             >
-              Roofing Tips (Blog)
+              Artigos técnicos
             </Link>
             <Link
               href="/contact/"
               onClick={() => setMobileMenuOpen(false)}
               className={`font-body text-16 transition-colors ${
-                pathname === '/contact/' ? 'text-[#1C1A1B] font-semibold' : 'text-[#1C1A1B] hover:text-[#6D696B]'
+                pathname === '/contact/' ? 'text-[#18243A] font-semibold' : 'text-[#18243A] hover:text-[#66758A]'
               }`}
             >
-              Contact
+              Contato
             </Link>
           </div>
         </div>
 
-        <div className="pt-6 mt-6 border-t border-[#E2DFE0] flex flex-col gap-3 pb-8">
+        <div className="pt-6 mt-6 border-t border-[#D9E2EF] flex flex-col gap-3 pb-8">
           <Button
-            href="/book-appointment/"
+            href={`tel:${CLINIC_INFO.contact.phone.replace(/[^0-9+]/g, '')}`}
             variant="forest"
             size="lg"
             className="w-full"
             onClick={() => setMobileMenuOpen(false)}
           >
-            Get a Quote
+            Ligar para a empresa
           </Button>
           <a
             href={`tel:${CLINIC_INFO.contact.phone.replace(/[^0-9+]/g, '')}`}
-            className="text-center font-body text-15 text-[#1C1A1B] py-2 font-semibold hover:text-[#6D696B] transition-colors"
+            className="text-center font-body text-15 text-[#18243A] py-2 font-semibold hover:text-[#66758A] transition-colors"
           >
-            Call: {CLINIC_INFO.contact.phone}
+            Telefone: {CLINIC_INFO.contact.phone}
           </a>
         </div>
       </div>

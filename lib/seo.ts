@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { CLINIC_INFO } from './clinic-data';
 
-export const BASE_URL = 'http://localhost:3456';
+export const BASE_URL = 'http://localhost:3001';
 
 export function createMetadata({
   title,
@@ -29,7 +29,7 @@ export function createMetadata({
       description,
       url,
       siteName: CLINIC_INFO.name,
-      locale: 'en_IE',
+    locale: 'pt_BR',
       type: 'website',
       images: [
         {
@@ -63,7 +63,7 @@ export function createMetadata({
 export function generateLocalBusinessSchema() {
   return {
     '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
+    '@type': 'GeneralContractor',
     '@id': `${BASE_URL}/#business`,
     name: CLINIC_INFO.name,
     legalName: CLINIC_INFO.legalName,
@@ -83,20 +83,20 @@ export function generateLocalBusinessSchema() {
       longitude: CLINIC_INFO.primaryLocation.coordinates.lng,
     } } : {}),
     openingHoursSpecification: CLINIC_INFO.schedule
-      .filter((item) => item.hours !== 'Closed')
+      .filter((item) => item.hours.includes('24 hours') || /\d{1,2}h[–-]\d{1,2}/.test(item.hours))
       .map((item) => {
         const isAllDay = item.hours.includes('24 hours');
         const range = item.hours.match(/(\d{1,2})h[–-](\d{1,2})/);
         return ({
         '@type': 'OpeningHoursSpecification',
         dayOfWeek: {
-          Monday: 'Monday',
-          Tuesday: 'Tuesday',
-          Wednesday: 'Wednesday',
-          Thursday: 'Thursday',
-          Friday: 'Friday',
-          Saturday: 'Saturday',
-          Sunday: 'Sunday',
+          'Segunda-feira': 'Monday',
+          'Terça-feira': 'Tuesday',
+          'Quarta-feira': 'Wednesday',
+          'Quinta-feira': 'Thursday',
+          'Sexta-feira': 'Friday',
+          'Sábado': 'Saturday',
+          'Domingo': 'Sunday',
         }[item.day],
         opens: isAllDay ? '00:00' : `${(range?.[1] ?? '08').padStart(2, '0')}:00`,
         closes: isAllDay ? '23:59' : `${(range?.[2] ?? '00').padStart(2, '0')}:00`,
@@ -111,7 +111,7 @@ export function generateMedicalProcedureSchema(serviceName: string, description:
     '@type': 'Service',
     name: serviceName,
     description: description,
-    serviceType: 'Roof repair',
+    serviceType: 'Fabricação e montagem de estruturas metálicas',
     url: `${BASE_URL}${url}`,
     provider: {
       '@type': 'LocalBusiness',

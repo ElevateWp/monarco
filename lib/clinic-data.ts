@@ -1,298 +1,114 @@
 export interface DentistProfile {
-  id: string;
-  slug: string;
-  name: string;
-  title: string;
-  qualifications: string;
-  specialization: string;
-  experienceYears: number;
-  bio: string;
-  philosophy: string;
-  education: string[];
-  memberships: string[];
-  specialties: string[];
-  image: string;
-  warmImage: string;
+  id: string; slug: string; name: string; title: string; qualifications: string; specialization: string;
+  experienceYears: number; bio: string; philosophy: string; education: string[]; memberships: string[];
+  specialties: string[]; image: string; warmImage: string;
 }
 
 export interface ServiceDetail {
-  slug: string;
-  name: string;
-  navLabel: string;
-  tagline: string;
-  shortDescription: string;
-  clinicalExplanation: string;
-  whoNeeds: string[];
-  benefits: string[];
-  indications: { condition: string; explanation: string }[];
+  slug: string; name: string; navLabel: string; tagline: string; shortDescription: string; clinicalExplanation: string;
+  whoNeeds: string[]; benefits: string[]; indications: { condition: string; explanation: string }[];
   procedureSteps: { stepNumber: number; title: string; duration: string; description: string; clinicalDetails: string }[];
   recoveryTimeline: { period: string; expectedSensations: string; careProtocol: string }[];
   costTransparency: { baseRange: string; factors: string[]; whatIsIncluded: string[]; note: string };
   beforeAfterCase: { category: string; clinicalContext: string; beforeLabel: string; afterLabel: string; beforeImage: string; afterImage: string; timeframe: string };
-  assignedDentistId: string;
-  faqs: { question: string; answer: string; relatedSlug?: string }[];
+  assignedDentistId: string; faqs: { question: string; answer: string; relatedSlug?: string }[];
 }
 
 export interface ClinicInformation {
-  name: string;
-  legalName: string;
-  tagline: string;
-  establishedYear?: number;
-  primaryLocation: {
-    street: string;
-    suite: string;
-    city: string;
-    state: string;
-    postalCode: string;
-    country: string;
-    directions: string;
-    landmarks: string;
-    coordinates?: { lat: number; lng: number };
-  };
+  name: string; legalName: string; tagline: string; establishedYear?: number;
+  primaryLocation: { street: string; suite: string; city: string; state: string; postalCode: string; country: string; directions: string; landmarks: string; coordinates?: { lat: number; lng: number } };
   contact: { phone: string; emergencyPhone: string; email?: string; whatsapp: string };
-  identityHighlights: string[];
-  schedule: { day: string; hours: string; isOpenToday?: boolean; isEmergencyOnly?: boolean }[];
-  verifiedStats: { value: number; suffix: string; label: string; description: string }[];
-  accreditations: string[];
+  identityHighlights: string[]; schedule: { day: string; hours: string; isOpenToday?: boolean; isEmergencyOnly?: boolean }[];
+  verifiedStats: { value: number; suffix: string; label: string; description: string }[]; accreditations: string[];
 }
 
 export const CLINIC_INFO: ClinicInformation = {
-  name: 'CJ Roofing Services Ltd',
-  legalName: 'CJ Roofing Services Ltd',
-  tagline: 'Reliable roofing work, delivered with care.',
+  name: 'BR GUEDES Engenharia e Montagem', legalName: 'BR GUEDES Engenharia e Montagem',
+  tagline: 'Soluções em serviços de engenharia, estruturas metálicas e coberturas.',
   primaryLocation: {
-    street: '',
-    suite: '',
-    city: 'Dublin',
-    state: '',
-    postalCode: '',
-    country: 'Ireland',
-    directions: 'Dublin, Ireland',
-    landmarks: 'Serving Dublin and surrounding areas',
+    street: 'Avenida Almirante Adalberto de Barros Nunes, 5501 - Siderlândia', suite: '',
+    city: 'Volta Redonda', state: 'Rio de Janeiro', postalCode: '27274-200', country: 'BR',
+    directions: 'Av. Alm. Adalberto de Barros Nunes, 5501 - Siderlândia, Volta Redonda - RJ, 27274-200, Brasil',
+    landmarks: 'FVJ8+8J, Siderlândia, Volta Redonda - RJ, Brasil',
   },
-  contact: {
-    phone: '+353 1 556 3783',
-    emergencyPhone: '+353 1 556 3783',
-    whatsapp: '+353 1 556 3783',
-    email: '',
-  },
-  identityHighlights: ['Over 10 years of roofing experience', 'Residential roofing across Dublin'],
+  contact: { phone: '+55 24 98880-7841', emergencyPhone: '+55 24 98880-7841', whatsapp: '+55 24 98880-7841', email: '' },
+  identityHighlights: ['Estruturas metálicas', 'Telhados e coberturas', 'Montagem e engenharia'],
   schedule: [
-    { day: 'Monday', hours: 'Open 24 hours' },
-    { day: 'Tuesday', hours: 'Open 24 hours' },
-    { day: 'Wednesday', hours: 'Open 24 hours' },
-    { day: 'Thursday', hours: 'Open 24 hours' },
-    { day: 'Friday', hours: 'Open 24 hours' },
-    { day: 'Saturday', hours: 'Open 24 hours' },
-    { day: 'Sunday', hours: 'Open 24 hours' },
+    { day: 'Segunda-feira', hours: '8h–18h' }, { day: 'Terça-feira', hours: '8h–18h' },
+    { day: 'Quarta-feira', hours: '8h–18h' }, { day: 'Quinta-feira', hours: '8h–18h' },
+    { day: 'Sexta-feira', hours: '8h–17h' }, { day: 'Sábado', hours: 'Fechado' }, { day: 'Domingo', hours: 'Fechado' },
   ],
   verifiedStats: [
-    { value: 4, suffix: '.7', label: 'Google rating', description: 'Based on 83 Google reviews.' },
-    { value: 83, suffix: '', label: 'Google reviews', description: 'Customer reviews shown on Google.' },
+    { value: 4, suffix: ',9', label: 'Nota no Google', description: 'Nota média baseada em 60 avaliações no Google.' },
+    { value: 60, suffix: '', label: 'Avaliações no Google', description: 'Avaliações públicas de clientes no Google.' },
   ],
   accreditations: [],
 };
 
-export const DENTISTS: DentistProfile[] = [
-  {
-    id: 'roofing-team',
-    slug: 'our-doctor',
-    name: 'Chris and the CJ Roofing team',
-    title: 'Dublin roofing specialists',
-    qualifications: 'Residential roofing',
-    specialization: 'Roof replacements, repairs and maintenance',
-    experienceYears: 10,
-    bio: 'Our Dublin roofing team brings over 10 years of experience to roof replacements and residential roofing work.',
-    philosophy: 'We take care of each property, explain the work clearly and aim to leave every roof strong and reliable.',
-    education: [],
-    memberships: [],
-    specialties: ['Roof replacement', 'Flat roofs', 'Roof repairs', 'Gutters and fascias'],
-    image: '/images/Michael.jpg',
-    warmImage: '/images/roof-saffron-walden-1024x768-1.jpg',
-  },
+export const DENTISTS: DentistProfile[] = [{
+  id: 'br-guedes-equipe', slug: 'equipe-br-guedes', name: 'BR GUEDES Engenharia e Montagem',
+  title: 'Engenharia, estruturas metálicas e coberturas', qualifications: 'Volta Redonda, Rio de Janeiro',
+  specialization: 'Fabricação e montagem de estruturas metálicas', experienceYears: 0,
+  bio: 'A BR GUEDES Engenharia e Montagem atua com soluções em serviços, estruturas metálicas e telhados.',
+  philosophy: 'Compromisso com a qualidade e com o que foi combinado em cada projeto.', education: [], memberships: [],
+  specialties: ['Estruturas metálicas', 'Telhados e coberturas', 'Fabricação e montagem'],
+  image: '/images/stock-roof-structure.jpg', warmImage: '/images/stock-roof-structure.jpg',
+}];
+
+export interface CustomerTestimonial { name: string; rating: number; quote: string; age: string; source: string }
+
+export const TESTIMONIALS: CustomerTestimonial[] = [
+  { name: 'Aluísio da Silva Barbosa', rating: 5, quote: 'A empresa trabalhou com profissionalismo. O telhado ficou ótimo e o serviço foi muito bem-feito. Cumpriram o que foi combinado em contrato. O engenheiro Bruno é muito responsável. Recomendo a empresa.', age: 'há 5 meses', source: 'Avaliação no Google' },
+  { name: 'Adolfo Schmidt', rating: 5, quote: 'A equipe é educada, trabalha com dedicação e vontade de fazer tudo certo. O trabalho fica sempre limpo.', age: 'há 2 anos', source: 'Avaliação no Google' },
+  { name: 'Andréia Cristina da Silva', rating: 5, quote: 'Profissionais excelentes. Concluíram o serviço antes do prazo, e ficou tudo perfeito. A empresa é fácil de contatar, respeitosa com seus clientes e comprometida com o trabalho.', age: 'há 1 ano', source: 'Avaliação no Google' },
 ];
 
-const projectPhotos = [
-  '/images/roof-saffron-walden-1024x768-1.jpg',
-  '/images/roofb3-1.jpg',
-  '/images/Michael.jpg',
-  '/images/m9.jpg',
-  '/images/m8.jpg',
-  '/images/m7.jpg',
-  '/images/m6.jpg',
-  '/images/m5.jpg',
-  '/images/m4.jpg',
-  '/images/m3.jpg',
-  '/images/m2.jpg',
-  '/images/IMG-20181001-WA0056.jpg',
-  '/images/IMG-20181001-WA0042.jpg',
-  '/images/IMG-20181001-WA0032.jpg',
-  '/images/IMG-20181001-WA0014.jpg',
-  '/images/caslast.jpg',
-  '/images/cas4.jpg',
+const imageSet = ['/images/stock-roof-structure.jpg', '/images/stock-steel-beams.jpg', '/images/stock-welding-brazil.jpg', '/images/stock-industrial-welder.jpg', '/images/stock-metal-worker.jpg', '/images/stock-welding-workshop.jpg'];
+const makeFaq = (serviceName: string) => [
+  { question: `Como solicitar um orçamento para ${serviceName.toLowerCase()}?`, answer: 'Entre em contato pelo telefone ou formulário e conte um pouco sobre o projeto. Se possível, envie medidas, fotos feitas com segurança ou referências para ajudar a equipe a entender a necessidade.' },
+  { question: 'O que devo informar no primeiro contato?', answer: 'Explique o objetivo do serviço, o local, as dimensões aproximadas, o prazo desejado e qualquer desenho ou referência disponível. A equipe poderá indicar se precisa de mais informações.' },
+  { question: 'Qual é o prazo para execução?', answer: 'O prazo depende do escopo, das condições do local e da programação do serviço. A equipe informa as possibilidades após conhecer os detalhes do projeto.' },
+  { question: 'O valor do serviço é fixo?', answer: 'O orçamento é preparado considerando as características de cada projeto, como dimensões, materiais, condições do local e escopo. Consulte a equipe para receber uma proposta adequada à sua necessidade.' },
+  { question: 'A BR GUEDES atende em Volta Redonda?', answer: 'A empresa está localizada em Siderlândia, Volta Redonda, Rio de Janeiro. Consulte diretamente a equipe sobre a disponibilidade para o endereço e o tipo de serviço desejado.' },
 ];
 
-const makeService = (
-  slug: string,
-  name: string,
-  navLabel: string,
-  tagline: string,
-  description: string,
-  problems: string[],
-  benefits: string[],
-  faqs: { question: string; answer: string }[],
-  photoIndex: number,
-): ServiceDetail => ({
-  slug,
-  name,
-  navLabel,
-  tagline,
-  shortDescription: description,
-  clinicalExplanation: description,
-  whoNeeds: problems,
-  benefits,
-  indications: problems.map((condition) => ({ condition, explanation: `Our team can inspect the roof and explain the options for ${condition.toLowerCase()}.` })),
+const makeService = (slug: string, name: string, tagline: string, description: string, imageIndex: number): ServiceDetail => ({
+  slug, name, navLabel: name, tagline, shortDescription: description, clinicalExplanation: description,
+  whoNeeds: ['Projetos de estruturas e coberturas', 'Construções e reformas que precisam de soluções metálicas'],
+  benefits: ['Atendimento para entender as necessidades do projeto', 'Orientação sobre as etapas do serviço', 'Alinhamento do escopo antes da execução'],
+  indications: [{ condition: 'Projeto sob medida', explanation: 'Converse com a equipe para apresentar as características e necessidades do local.' }],
   procedureSteps: [
-    { stepNumber: 1, title: 'Roof inspection', duration: 'By appointment', description: 'We assess the roof and note visible areas that need attention.', clinicalDetails: 'The inspection helps define the right scope for the property.' },
-    { stepNumber: 2, title: 'Clear proposal', duration: 'After inspection', description: 'We explain the recommended work and materials before starting.', clinicalDetails: 'Price and timing are confirmed once the work is assessed.' },
-    { stepNumber: 3, title: 'Roofing work', duration: 'As agreed', description: 'Our team completes the agreed work with care for your property.', clinicalDetails: 'Access and safety arrangements are agreed in advance.' },
-    { stepNumber: 4, title: 'Final review', duration: 'At completion', description: 'We review the completed work and share any relevant maintenance guidance.', clinicalDetails: 'The final scope reflects the work agreed with you.' },
+    { stepNumber: 1, title: 'Conversa inicial', duration: 'A combinar', description: 'Conte à equipe sobre o projeto e o tipo de serviço desejado.', clinicalDetails: 'Informações de medidas, local e prazo ajudam na avaliação inicial.' },
+    { stepNumber: 2, title: 'Avaliação do projeto', duration: 'Após o contato', description: 'A equipe entende o escopo e orienta sobre as próximas etapas.', clinicalDetails: 'Cada proposta depende das condições e necessidades do projeto.' },
+    { stepNumber: 3, title: 'Execução do serviço', duration: 'Conforme combinado', description: 'O trabalho é realizado de acordo com o escopo alinhado.', clinicalDetails: 'Detalhes de prazo e execução são confirmados diretamente com a empresa.' },
   ],
   recoveryTimeline: [
-    { period: 'Before work begins', expectedSensations: 'We assess the roof and agree the scope with you.', careProtocol: 'Share any photos and describe when the issue occurs.' },
-    { period: 'During the work', expectedSensations: 'Timing depends on access, materials and the work involved.', careProtocol: 'Keep people and pets clear of the work area.' },
-    { period: 'After completion', expectedSensations: 'Our team explains what has been completed.', careProtocol: 'Follow any roof maintenance guidance provided by the team.' },
+    { period: 'Planejamento', expectedSensations: 'Definição das necessidades e do escopo do projeto.', careProtocol: 'Compartilhe medidas, referências e informações do local.' },
+    { period: 'Execução', expectedSensations: 'Etapas e prazo variam conforme o serviço contratado.', careProtocol: 'Combine com a equipe as condições de acesso e organização do local.' },
   ],
-  costTransparency: {
-    baseRange: 'Request a quote after an assessment.',
-    factors: ['Roof type and condition', 'Roof access and height', 'Materials and extent of work'],
-    whatIsIncluded: ['Agreed scope of work', 'Description of planned materials', 'Guidance on the completed work'],
-    note: 'Pricing, timings and availability are confirmed by the team after assessment.',
-  },
-  beforeAfterCase: {
-    category: name,
-    clinicalContext: 'Examples of roofing work from the CJ Roofing photo gallery.',
-    beforeLabel: 'Roofing project',
-    afterLabel: 'Roofing project',
-    beforeImage: projectPhotos[photoIndex % projectPhotos.length],
-    afterImage: projectPhotos[(photoIndex + 1) % projectPhotos.length],
-    timeframe: 'Project photos',
-  },
-  assignedDentistId: 'roofing-team',
-  faqs,
+  costTransparency: { baseRange: 'Orçamento sob consulta.', factors: ['Tipo e dimensão do projeto', 'Materiais e condições do local', 'Escopo e prazo desejados'], whatIsIncluded: ['Escopo proposto', 'Alinhamento das etapas do serviço'], note: 'Valores, prazos e disponibilidade são informados pela equipe após conhecer o projeto.' },
+  beforeAfterCase: { category: name, clinicalContext: 'Imagem ilustrativa de estrutura metálica.', beforeLabel: 'Estrutura metálica', afterLabel: 'Estrutura metálica', beforeImage: imageSet[imageIndex % imageSet.length], afterImage: imageSet[(imageIndex + 1) % imageSet.length], timeframe: 'Imagem ilustrativa' },
+  assignedDentistId: 'br-guedes-equipe', faqs: makeFaq(name),
 });
 
 export const SERVICES: ServiceDetail[] = [
-  makeService(
-    'dental-implants', 'Roof Repairs and Leak Detection', 'Roof Repairs',
-    'Find the source of a leak and arrange a repair to help protect your home.',
-    'A ceiling stain or leak can have several causes. An assessment of the roof helps locate water entry points and identify suitable repairs.',
-    ['Leaks during rain', 'Damp patches on ceilings', 'Loose or broken roof tiles'],
-    ['Inspect visible sources of water entry', 'Assess tiles, joins and roof finishes', 'Agree the repair scope before work begins'],
-    [{ question: 'How can you find the source of a roof leak?', answer: 'The source may not be directly above an indoor stain. An inspection of the roof and its joins can help identify where water is entering.' }], 0,
-  ),
-  makeService(
-    'root-canal', 'Gutter and Fascia Repairs', 'Gutters and Fascias',
-    'Keep gutters, fascias and roof edges in good condition.',
-    'Gutters and fascias help manage rainwater and protect roof edges. Blockages, loose sections or worn seals can affect drainage and contribute to leaks.',
-    ['Blocked or overflowing gutters', 'Loose or damaged fascias', 'Water collecting near walls or eaves'],
-    ['Check water flow and visible damage', 'Identify joins that may need sealing', 'Plan cleaning or repairs for the roofline'],
-    [{ question: 'How often should gutters be checked?', answer: 'It depends on nearby trees, rainfall and the property. Regular checks can help spot blockages and visible damage.' }], 3,
-  ),
-  makeService(
-    'teeth-whitening', 'Roof Replacement', 'Roof Replacement',
-    'Roof replacement work planned around your home and its existing roof.',
-    'A roof replacement begins with an assessment of the existing roof, materials and access. The team explains the proposed work and timing before getting started.',
-    ['Worn or damaged roof coverings', 'Repeated problems across a roof', 'Planning a full roof renewal'],
-    ['Assess the existing roof and its condition', 'Discuss suitable roof materials and scope', 'Plan replacement work for your property'],
-    [{ question: 'When might a roof need to be replaced?', answer: 'The right option depends on the roof’s condition, age, materials and repair history. An assessment can help clarify whether repair or replacement is suitable.' }], 10,
-  ),
-  makeService(
-    'dental-cleaning', 'Flat Roof Installation and Repairs', 'Flat Roofs',
-    'Flat roof installation, repairs and maintenance for residential properties.',
-    'Flat roof work depends on the existing surface, drainage and signs of water ingress. Our team assesses the area before recommending materials and preparation.',
-    ['Leaks on flat roofs', 'Visible wear or damage', 'A planned flat roof replacement'],
-    ['Assess the roof surface and drainage', 'Identify joints and areas needing attention', 'Agree the preparation and work scope'],
-    [{ question: 'Can a flat roof leak be repaired?', answer: 'The right approach depends on the roof surface, condition and source of the leak. An inspection helps determine whether a repair or replacement is appropriate.' }], 12,
-  ),
-  makeService(
-    'braces', 'Roof Inspections and Maintenance', 'Roof Inspections',
-    'Check visible wear and plan maintenance for your roof.',
-    'A roof inspection checks visible tiles, ridges, gutters, flashings and other accessible areas. The team explains any recommended maintenance.',
-    ['A roof without a recent inspection', 'Visible wear or loose roof components', 'Planning seasonal roof maintenance'],
-    ['Record areas that may need attention', 'Prioritise repairs based on the roof condition', 'Plan ongoing roof maintenance'],
-    [{ question: 'Does an inspection require access to the roof?', answer: 'The assessment method depends on the property and safe access. The team will agree a suitable approach before work begins.' }], 1,
-  ),
-  makeService(
-    'cosmetic-dentistry', 'Storm Damage Repairs', 'Storm Damage',
-    'Assess visible roof damage after heavy rain or strong winds.',
-    'Loose tiles, damaged gutters or water ingress after a storm may need attention. An assessment helps document visible damage and agree next steps.',
-    ['Tiles displaced by wind', 'Leaks after heavy rain', 'Loose gutters, flashings or roof finishes'],
-    ['Identify visible storm damage', 'Prioritise areas where water may enter', 'Discuss suitable repair options'],
-    [{ question: 'What should I do if my roof starts leaking during a storm?', answer: 'Move belongings away from the water and collect drips if it is safe. Do not climb onto a wet roof or touch electrical fittings affected by water.' }], 5,
-  ),
+  makeService('estruturas-metalicas', 'Estruturas metálicas', 'Fabricação e montagem de estruturas metálicas.', 'Soluções em estruturas metálicas para projetos de diferentes portes. Consulte a equipe para apresentar as necessidades do seu projeto.', 0),
+  makeService('telhados-coberturas', 'Telhados e coberturas', 'Soluções para telhados e coberturas.', 'Serviços relacionados a telhados e coberturas, com escopo e etapas definidos conforme cada projeto.', 1),
+  makeService('engenharia-montagem', 'Engenharia e montagem', 'Serviços de engenharia e montagem.', 'Apoio em serviços de engenharia e montagem. Entre em contato para conversar sobre as características do seu projeto.', 2),
+  makeService('fabricacao-metalica', 'Fabricação metálica', 'Fabricação de componentes e estruturas metálicas.', 'Converse com a BR GUEDES sobre fabricação metálica e as especificações do seu projeto.', 3),
+  makeService('montagem-industrial', 'Montagem industrial', 'Montagem de estruturas e componentes.', 'Serviços de montagem para projetos e instalações. Consulte a empresa para entender as possibilidades.', 4),
+  makeService('reformas-manutencao', 'Reformas e manutenção', 'Serviços de reforma e manutenção.', 'Converse com a equipe sobre reformas, manutenção e soluções para estruturas e coberturas.', 5),
 ];
 
-export interface EmergencyCondition {
-  id: string;
-  title: string;
-  urgency: 'Immediate (0–2 hours)' | 'Same-Day (2–6 hours)' | 'Urgent (Within 24 hours)';
-  symptoms: string[];
-  immediateAction: string[];
-  clinicTreatment: string;
-}
-
-export const EMERGENCY_CONDITIONS: EmergencyCondition[] = [
-  { id: 'active-leak', title: 'Active roof leak', urgency: 'Same-Day (2–6 hours)', symptoms: ['Water dripping through the ceiling', 'A damp patch growing during rain'], immediateAction: ['Move people and belongings away from the wet area.', 'If safe, collect dripping water. Keep away from electrical fittings affected by water.', 'Do not climb onto the roof during rain.'], clinicTreatment: 'Assessment of the leak and the repair options once the property can be accessed safely.' },
-  { id: 'storm-damage', title: 'Roof tiles displaced by wind', urgency: 'Urgent (Within 24 hours)', symptoms: ['Tiles on the ground or out of place', 'Areas of the roof exposed'], immediateAction: ['Keep clear of loose materials.', 'Photograph visible damage from the ground if safe.', 'Do not climb onto the roof or try to replace tiles yourself.'], clinicTreatment: 'Inspection of the affected roof areas when access is safe.' },
-  { id: 'ceiling-water', title: 'Water near electrical fittings', urgency: 'Immediate (0–2 hours)', symptoms: ['Dampness near lights or sockets', 'Ceiling sagging or changing shape'], immediateAction: ['Leave the affected area and do not touch wet electrical equipment.', 'If there may be electrical danger, contact a qualified professional to isolate the power.', 'Seek emergency assistance if anyone or the property is in immediate danger.'], clinicTreatment: 'Make the property safe first; the roof can be assessed once the area is secure.' },
-];
+export interface EmergencyCondition { id: string; title: string; urgency: string; symptoms: string[]; immediateAction: string[]; clinicTreatment: string }
+export const EMERGENCY_CONDITIONS: EmergencyCondition[] = [];
 
 export interface BlogPost {
-  slug: string;
-  title: string;
-  category: string;
-  readTime: string;
-  publishDate: string;
-  lastUpdated: string;
-  authorId: string;
-  excerpt: string;
-  leadImage: string;
-  relatedServiceSlug: string;
+  slug: string; title: string; category: string; readTime: string; publishDate: string; lastUpdated: string; authorId: string;
+  excerpt: string; leadImage: string; relatedServiceSlug: string;
   content: { intro: string; sections: { heading: string; body: string }[]; faqs?: { question: string; answer: string }[] };
 }
-
 export const BLOG_POSTS: BlogPost[] = [
-  {
-    slug: 'signs-of-a-roof-leak', title: 'Signs of a roof leak: what to look for', category: 'Roof leaks', readTime: '4 min read', publishDate: '2026-10-08', lastUpdated: '2026-10-08', authorId: 'our-doctor',
-    excerpt: 'Ceiling stains, drips and peeling paint can point to water ingress. Learn what to look for safely.', leadImage: projectPhotos[2], relatedServiceSlug: 'dental-implants',
-    content: { intro: 'A damp patch can appear some distance from where water entered. Notice when it appears and record what you can see from the ground.', sections: [
-      { heading: 'Signs to check', body: 'Drips, bubbling paint, a damp smell and displaced tiles are all reasons to arrange an inspection. They do not show the cause or the amount of repair work needed on their own.' },
-      { heading: 'Stay safe while you wait', body: 'Move furniture and electronics away from water. Do not climb onto the roof, especially when it is wet, and keep away from lights or wiring affected by moisture.' },
-    ], faqs: [{ question: 'Does a ceiling stain show the exact location of a leak?', answer: 'Not always. Water can travel along the roof structure before appearing inside, so the source needs to be assessed.' }] },
-  },
-  {
-    slug: 'gutter-and-fascia-maintenance', title: 'Gutters and fascias: why maintenance matters', category: 'Maintenance', readTime: '4 min read', publishDate: '2026-10-08', lastUpdated: '2026-10-08', authorId: 'our-doctor',
-    excerpt: 'Blockages and worn seals can affect drainage. Learn when to arrange an inspection.', leadImage: projectPhotos[3], relatedServiceSlug: 'root-canal',
-    content: { intro: 'Gutters and fascias work with the roof to carry water away from walls and eaves. A check can help find visible blockages or wear.', sections: [
-      { heading: 'Look for drainage issues', body: 'Overflowing gutters, standing water or damp marks nearby may need assessment. Leaves and debris can also block water flow.' },
-      { heading: 'Put safety first', body: 'Do not attempt to clean or repair high areas without proper equipment and safe access. Arrange a professional assessment.' },
-    ] },
-  },
-  {
-    slug: 'checking-your-roof-after-a-storm', title: 'How to check your roof after a storm', category: 'Storm damage', readTime: '5 min read', publishDate: '2026-10-08', lastUpdated: '2026-10-08', authorId: 'our-doctor',
-    excerpt: 'Learn which signs you can safely record from the ground and when to avoid accessing the roof.', leadImage: projectPhotos[5], relatedServiceSlug: 'cosmetic-dentistry',
-    content: { intro: 'After heavy rain or wind, start by looking at the house from a safe place. Do not climb onto the roof to check loose materials.', sections: [
-      { heading: 'Record visible damage', body: 'From the ground, photograph fallen tiles, displaced gutters or new damp patches. Note when water entered and which rooms were affected.' },
-      { heading: 'When to seek help', body: 'Active leaks, exposed roof areas or water near electrical fittings need attention. Keep clear of unsafe areas and seek professional advice.' },
-    ] },
-  },
-  {
-    slug: 'when-to-replace-roof-tiles', title: 'When replacing roof tiles may be the right choice', category: 'Roof tiles', readTime: '4 min read', publishDate: '2026-10-08', lastUpdated: '2026-10-08', authorId: 'our-doctor',
-    excerpt: 'Broken or displaced tiles can be a reason to assess the roof and the surrounding materials.', leadImage: projectPhotos[10], relatedServiceSlug: 'teeth-whitening',
-    content: { intro: 'Not every issue means replacing the whole roof. An assessment considers the tile type, the condition of nearby materials and the reason for the damage.', sections: [
-      { heading: 'Broken or displaced tiles', body: 'Tiles on the ground, visible gaps or exposed underlay are signs that should be checked by a team with safe access.' },
-      { heading: 'What to consider', body: 'Availability of matching tiles, the roof structure and access all affect the scope and timing of repairs.' },
-    ] },
-  },
+  { slug: 'planejamento-de-estrutura-metalica', title: 'O que considerar ao planejar uma estrutura metálica', category: 'Estruturas metálicas', readTime: '3 min de leitura', publishDate: '2026-10-13', lastUpdated: '2026-10-13', authorId: 'br-guedes-equipe', excerpt: 'Conheça alguns pontos para organizar as informações do projeto antes de solicitar uma avaliação.', leadImage: imageSet[0], relatedServiceSlug: 'estruturas-metalicas', content: { intro: 'Um bom planejamento começa com as necessidades do espaço, o uso previsto e as dimensões disponíveis. Reunir essas informações ajuda a iniciar a conversa sobre a estrutura metálica.', sections: [{ heading: 'Reúna as informações do local', body: 'Anote as medidas disponíveis, as condições de acesso e o uso que a estrutura terá. Fotografias de referência também podem ajudar a explicar a ideia.' }, { heading: 'Converse sobre escopo e etapas', body: 'Cada projeto tem características próprias. Entre em contato com a BR GUEDES para conversar sobre o escopo, as etapas e o prazo.' }] } },
+  { slug: 'cuidados-com-telhados-e-coberturas', title: 'Cuidados com telhados e coberturas', category: 'Telhados e coberturas', readTime: '3 min de leitura', publishDate: '2026-10-13', lastUpdated: '2026-10-13', authorId: 'br-guedes-equipe', excerpt: 'Acompanhar as condições visíveis da cobertura pode ajudar a identificar quando é hora de buscar orientação profissional.', leadImage: imageSet[1], relatedServiceSlug: 'telhados-coberturas', content: { intro: 'Telhados e coberturas estão expostos ao tempo e podem precisar de avaliação ao longo dos anos. Observe sinais visíveis sem subir no telhado ou se expor a riscos.', sections: [{ heading: 'Observe sinais com segurança', body: 'Manchas de umidade, peças deslocadas ou danos aparentes podem indicar que uma avaliação é necessária. Registre o que notar a partir de um local seguro.' }, { heading: 'Peça orientação', body: 'Explique o que observou e compartilhe imagens feitas do chão. A equipe poderá conversar sobre os próximos passos.' }] } },
 ];

@@ -2,6 +2,7 @@ import React from 'react';
 import { Metadata } from 'next';
 import HomeHero from '@/components/sections/home/HomeHero';
 import HomeStats from '@/components/sections/home/HomeStats';
+import HomeTestimonials from '@/components/sections/home/HomeTestimonials';
 import PinnedHorizontalTrack, { HorizontalTrackItem } from '@/components/motion/PinnedHorizontalTrack';
 import HomeWhyUs from '@/components/sections/home/HomeWhyUs';
 import HomeDentists from '@/components/sections/home/HomeDentists';
@@ -16,9 +17,9 @@ import { SERVICES } from '@/lib/clinic-data';
 import { createMetadata } from '@/lib/seo';
 
 export const metadata: Metadata = createMetadata({
-  title: 'Roofing Services in Dublin',
+  title: 'Estruturas Metálicas e Coberturas em Volta Redonda',
   description:
-    'CJ Roofing Services Ltd provides roof replacements, flat roof installation, repairs and gutter services across Dublin. Open 24 hours.',
+    'A BR GUEDES Engenharia e Montagem oferece serviços de fabricação e montagem de estruturas metálicas, telhados e coberturas em Volta Redonda, RJ.',
   pathname: '/',
 });
 
@@ -39,11 +40,12 @@ export default function HomePage() {
 
       {/* SECTION 2: Trust / Highlights */}
       <HomeStats />
+      <HomeTestimonials />
 
-      {/* SECTION 3: Roofing Services */}
+      {/* SECTION 3: Materials */}
       <PinnedHorizontalTrack
         items={serviceTrackItems}
-        title="Complete Roofing Services"
+      title="Nossas soluções"
       />
 
       {/* Signature Brand Device 2 of 4: Full-Bleed Section Divider */}
@@ -51,19 +53,19 @@ export default function HomePage() {
         <TextureBackground variant="divider" className="opacity-30" />
       </div>
 
-      {/* SECTION 4: Why Choose CJ Roofing */}
+      {/* SECTION 4: Store benefits */}
       <HomeWhyUs />
 
       {/* SECTION 5: Meet Our Team */}
       <HomeDentists />
 
-      {/* SECTION 6: Featured Roofing Work */}
+      {/* SECTION 6: Featured materials */}
       <HomeFeaturedTreatments />
 
       {/* SECTION 7: Before & After (Draggable Slider - Orchestrated Moment 3) */}
       <HomeBeforeAfter />
 
-      {/* SECTION 9: Roofing Project Gallery */}
+      {/* SECTION 9: Store and product gallery */}
       <HomeGallery />
 
       {/* SECTION 10: Frequently Asked Questions */}
