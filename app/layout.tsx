@@ -8,19 +8,19 @@ import JsonLd from '@/components/ui/JsonLd';
 import { generateLocalBusinessSchema } from '@/lib/seo';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('http://localhost:3001'),
+  metadataBase: new URL('http://localhost:3000'),
   title: {
-    default: 'BR GUEDES Engenharia e Montagem',
+    default: 'Monarca Caça Vazamentos',
     template: '%s',
   },
   description:
-    'BR GUEDES Engenharia e Montagem oferece serviços de engenharia, fabricação e montagem de estruturas metálicas e coberturas em Volta Redonda, RJ.',
+    'Monarca Caça Vazamentos atua com caça vazamentos, desentupimento e manutenção geral 24 horas em Caieiras e região.',
   keywords: [
-    'BR GUEDES Engenharia e Montagem',
-    'estruturas metálicas em Volta Redonda',
-    'telhados e coberturas no Rio de Janeiro',
+    'Monarca Caça Vazamentos',
+    'caça vazamentos em Caieiras',
+    'desentupimento e manutenção hidráulica',
   ],
-  authors: [{ name: 'BR GUEDES Engenharia e Montagem' }],
+  authors: [{ name: 'Monarca Caça Vazamentos' }],
   icons: {
     icon: [
       { url: '/icon.png', sizes: '32x32', type: 'image/png' },
@@ -46,7 +46,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="bg-paper text-forest-ink min-h-screen flex flex-col selection:bg-[#F2F6FC] selection:text-[#18243A]">
+      <body className="bg-paper text-forest-ink min-h-screen flex flex-col selection:bg-[#FFE2D1] selection:text-[#222222]">
         <PagePreloader />
         <JsonLd data={generateLocalBusinessSchema()} />
         <a href="#main-content" className="skip-link">

@@ -1,5 +1,2 @@
 import { redirect } from 'next/navigation';
-
-export default function LegacyTeamRoute() {
-  redirect('/about/');
-}
+export default function LegacyRedirect() { redirect('/sobre/'); }

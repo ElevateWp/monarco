@@ -106,7 +106,7 @@ export default function PinnedHorizontalTrack({
         <div>
           <span className="font-body text-13 text-forest-ink/60 block mb-2">{title}</span>
           <h2 className="font-display text-26 sm:text-33 md:text-41 text-forest-ink leading-tight">
-            Engenharia e montagem para o seu projeto
+            Caça vazamentos, desentupimento e manutenção geral
           </h2>
         </div>
         <div className="flex items-center gap-4">
@@ -232,7 +232,7 @@ export default function PinnedHorizontalTrack({
               setCurrentIndex(idx + 1);
             }}
             className={`h-3 rounded-full transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-forest ${
-              idx === currentIndex - 1 ? 'bg-[#18243A] w-4' : 'bg-[#D9E2EF] w-3'
+              idx === currentIndex - 1 ? 'bg-[#222222] w-4' : 'bg-[#E8DCD5] w-3'
             }`}
           />
         ))}

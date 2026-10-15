@@ -23,81 +23,70 @@ export interface ClinicInformation {
 }
 
 export const CLINIC_INFO: ClinicInformation = {
-  name: 'BR GUEDES Engenharia e Montagem', legalName: 'BR GUEDES Engenharia e Montagem',
-  tagline: 'Soluções em serviços de engenharia, estruturas metálicas e coberturas.',
+  name: 'Monarca Caça Vazamentos', legalName: 'Monarca Caça Vazamentos Desentupidora e Manutenção Geral',
+  tagline: 'Caça vazamentos, desentupimento e manutenção geral em Caieiras e região.',
   primaryLocation: {
-    street: 'Avenida Almirante Adalberto de Barros Nunes, 5501 - Siderlândia', suite: '',
-    city: 'Volta Redonda', state: 'Rio de Janeiro', postalCode: '27274-200', country: 'BR',
-    directions: 'Av. Alm. Adalberto de Barros Nunes, 5501 - Siderlândia, Volta Redonda - RJ, 27274-200, Brasil',
-    landmarks: 'FVJ8+8J, Siderlândia, Volta Redonda - RJ, Brasil',
+    street: 'Rua Tomás Parizotto, 354', suite: '', city: 'Caieiras', state: 'São Paulo', postalCode: '07718-000', country: 'BR',
+    directions: 'Vera Tereza, Caieiras - SP, Brasil', landmarks: 'M69R+9J Vera Tereza, Caieiras - São Paulo, Brasil',
   },
-  contact: { phone: '+55 24 98880-7841', emergencyPhone: '+55 24 98880-7841', whatsapp: '+55 24 98880-7841', email: '' },
-  identityHighlights: ['Estruturas metálicas', 'Telhados e coberturas', 'Montagem e engenharia'],
-  schedule: [
-    { day: 'Segunda-feira', hours: '8h–18h' }, { day: 'Terça-feira', hours: '8h–18h' },
-    { day: 'Quarta-feira', hours: '8h–18h' }, { day: 'Quinta-feira', hours: '8h–18h' },
-    { day: 'Sexta-feira', hours: '8h–17h' }, { day: 'Sábado', hours: 'Fechado' }, { day: 'Domingo', hours: 'Fechado' },
-  ],
-  verifiedStats: [
-    { value: 4, suffix: ',9', label: 'Nota no Google', description: 'Nota média baseada em 60 avaliações no Google.' },
-    { value: 60, suffix: '', label: 'Avaliações no Google', description: 'Avaliações públicas de clientes no Google.' },
-  ],
-  accreditations: [],
+  contact: { phone: '+55 11 97547-5490', emergencyPhone: '+55 11 97547-5490', whatsapp: '+55 11 97547-5490', email: '' },
+  identityHighlights: ['Caça vazamentos', 'Desentupimento', 'Encanador 24 horas', 'Manutenção hidráulica e geral'],
+  schedule: ['Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado', 'Domingo'].map((day) => ({ day, hours: '24 hours' })),
+  verifiedStats: [], accreditations: [],
 };
 
 export const DENTISTS: DentistProfile[] = [{
-  id: 'br-guedes-equipe', slug: 'equipe-br-guedes', name: 'BR GUEDES Engenharia e Montagem',
-  title: 'Engenharia, estruturas metálicas e coberturas', qualifications: 'Volta Redonda, Rio de Janeiro',
-  specialization: 'Fabricação e montagem de estruturas metálicas', experienceYears: 0,
-  bio: 'A BR GUEDES Engenharia e Montagem atua com soluções em serviços, estruturas metálicas e telhados.',
-  philosophy: 'Compromisso com a qualidade e com o que foi combinado em cada projeto.', education: [], memberships: [],
-  specialties: ['Estruturas metálicas', 'Telhados e coberturas', 'Fabricação e montagem'],
-  image: '/images/stock-roof-structure.jpg', warmImage: '/images/stock-roof-structure.jpg',
+  id: 'equipe-monarca', slug: 'equipe-monarca', name: 'Equipe Monarca',
+  title: 'Caça vazamentos, desentupimento e manutenção', qualifications: 'Atendimento 24 horas',
+  specialization: 'Serviços hidráulicos residenciais e comerciais', experienceYears: 0,
+  bio: 'A Monarca Caça Vazamentos atende emergências hidráulicas, localização de vazamentos, desentupimento e serviços de manutenção geral em Caieiras e região.',
+  philosophy: 'Atendimento ágil e cuidadoso para entender o problema e orientar a solução adequada.', education: [], memberships: [],
+  specialties: ['Localização de vazamentos', 'Desentupimento', 'Reparos hidráulicos', 'Manutenção geral'],
+  image: '/images/logo.png', warmImage: '/images/logo.png',
 }];
 
 export interface CustomerTestimonial { name: string; rating: number; quote: string; age: string; source: string }
-
 export const TESTIMONIALS: CustomerTestimonial[] = [
-  { name: 'Aluísio da Silva Barbosa', rating: 5, quote: 'A empresa trabalhou com profissionalismo. O telhado ficou ótimo e o serviço foi muito bem-feito. Cumpriram o que foi combinado em contrato. O engenheiro Bruno é muito responsável. Recomendo a empresa.', age: 'há 5 meses', source: 'Avaliação no Google' },
-  { name: 'Adolfo Schmidt', rating: 5, quote: 'A equipe é educada, trabalha com dedicação e vontade de fazer tudo certo. O trabalho fica sempre limpo.', age: 'há 2 anos', source: 'Avaliação no Google' },
-  { name: 'Andréia Cristina da Silva', rating: 5, quote: 'Profissionais excelentes. Concluíram o serviço antes do prazo, e ficou tudo perfeito. A empresa é fácil de contatar, respeitosa com seus clientes e comprometida com o trabalho.', age: 'há 1 ano', source: 'Avaliação no Google' },
+  { name: 'Tatiane Alves', rating: 5, quote: 'Tive um vazamento sério no apartamento e fui atendida rapidamente. A equipe foi prestativa e cuidadosa. Serviço excelente.', age: '4 meses atrás', source: 'Avaliação no Google' },
+  { name: 'Apollo Mota Moura', rating: 5, quote: 'Profissional impecável, atendimento rápido, muito cuidadoso e preço justo.', age: '6 meses atrás', source: 'Avaliação no Google' },
+  { name: 'Paulo Perê', rating: 5, quote: 'Profissional educado, chegou muito rápido num domingo e resolveu o problema hidráulico por um preço justo.', age: 'Avaliação editada', source: 'Avaliação no Google' },
+  { name: 'A C', rating: 5, quote: 'Excelente profissional. Trabalho cuidadoso e rápido, com preço justo.', age: '8 meses atrás', source: 'Avaliação no Google' },
 ];
 
-const imageSet = ['/images/stock-roof-structure.jpg', '/images/stock-steel-beams.jpg', '/images/stock-welding-brazil.jpg', '/images/stock-industrial-welder.jpg', '/images/stock-metal-worker.jpg', '/images/stock-welding-workshop.jpg'];
+const imageSet = ['/images/logo.png'];
 const makeFaq = (serviceName: string) => [
-  { question: `Como solicitar um orçamento para ${serviceName.toLowerCase()}?`, answer: 'Entre em contato pelo telefone ou formulário e conte um pouco sobre o projeto. Se possível, envie medidas, fotos feitas com segurança ou referências para ajudar a equipe a entender a necessidade.' },
-  { question: 'O que devo informar no primeiro contato?', answer: 'Explique o objetivo do serviço, o local, as dimensões aproximadas, o prazo desejado e qualquer desenho ou referência disponível. A equipe poderá indicar se precisa de mais informações.' },
-  { question: 'Qual é o prazo para execução?', answer: 'O prazo depende do escopo, das condições do local e da programação do serviço. A equipe informa as possibilidades após conhecer os detalhes do projeto.' },
-  { question: 'O valor do serviço é fixo?', answer: 'O orçamento é preparado considerando as características de cada projeto, como dimensões, materiais, condições do local e escopo. Consulte a equipe para receber uma proposta adequada à sua necessidade.' },
-  { question: 'A BR GUEDES atende em Volta Redonda?', answer: 'A empresa está localizada em Siderlândia, Volta Redonda, Rio de Janeiro. Consulte diretamente a equipe sobre a disponibilidade para o endereço e o tipo de serviço desejado.' },
+  { question: `A Monarca atende ${serviceName.toLowerCase()} em emergências?`, answer: 'O atendimento funciona 24 horas. Ligue para informar o endereço e explicar o que está acontecendo.' },
+  { question: 'Em quais regiões vocês atendem?', answer: 'A Monarca fica em Vera Tereza, Caieiras. Ligue para confirmar o atendimento no seu endereço.' },
+  { question: 'Como solicitar uma visita?', answer: 'Ligue para +55 11 97547-5490 e informe o endereço, o tipo de problema e quando começou.' },
+  { question: 'O orçamento depende do serviço?', answer: 'O valor varia conforme o problema, o local e o serviço necessário. Entre em contato para explicar a situação e combinar a avaliação.' },
 ];
 
 const makeService = (slug: string, name: string, tagline: string, description: string, imageIndex: number): ServiceDetail => ({
   slug, name, navLabel: name, tagline, shortDescription: description, clinicalExplanation: description,
-  whoNeeds: ['Projetos de estruturas e coberturas', 'Construções e reformas que precisam de soluções metálicas'],
-  benefits: ['Atendimento para entender as necessidades do projeto', 'Orientação sobre as etapas do serviço', 'Alinhamento do escopo antes da execução'],
-  indications: [{ condition: 'Projeto sob medida', explanation: 'Converse com a equipe para apresentar as características e necessidades do local.' }],
+  whoNeeds: ['Residências com vazamento, infiltração ou aumento inesperado na conta de água', 'Imóveis com ralos, pias ou tubulações entupidas', 'Quem precisa de reparos hidráulicos ou manutenção geral'],
+  benefits: ['Atendimento 24 horas para emergências', 'Avaliação cuidadosa do problema', 'Serviços hidráulicos e manutenção geral'],
+  indications: [{ condition: 'Atendimento residencial e comercial', explanation: 'Informe o endereço e os sinais observados para confirmar a disponibilidade do serviço.' }],
   procedureSteps: [
-    { stepNumber: 1, title: 'Conversa inicial', duration: 'A combinar', description: 'Conte à equipe sobre o projeto e o tipo de serviço desejado.', clinicalDetails: 'Informações de medidas, local e prazo ajudam na avaliação inicial.' },
-    { stepNumber: 2, title: 'Avaliação do projeto', duration: 'Após o contato', description: 'A equipe entende o escopo e orienta sobre as próximas etapas.', clinicalDetails: 'Cada proposta depende das condições e necessidades do projeto.' },
-    { stepNumber: 3, title: 'Execução do serviço', duration: 'Conforme combinado', description: 'O trabalho é realizado de acordo com o escopo alinhado.', clinicalDetails: 'Detalhes de prazo e execução são confirmados diretamente com a empresa.' },
+    { stepNumber: 1, title: 'Contato e descrição do problema', duration: 'Atendimento 24 horas', description: 'Conte onde está o problema, quando começou e quais sinais você observou.', clinicalDetails: 'Se possível, informe se há água aparente, umidade, mau cheiro ou escoamento lento.' },
+    { stepNumber: 2, title: 'Avaliação no local', duration: 'A combinar', description: 'A equipe verifica a situação para identificar o serviço necessário.', clinicalDetails: 'O método depende do tipo de instalação e do problema encontrado.' },
+    { stepNumber: 3, title: 'Reparo ou desentupimento', duration: 'Conforme o serviço', description: 'Após a avaliação, a equipe explica as opções e combina o trabalho.', clinicalDetails: 'Prazo e valor dependem das condições observadas no local.' },
   ],
   recoveryTimeline: [
-    { period: 'Planejamento', expectedSensations: 'Definição das necessidades e do escopo do projeto.', careProtocol: 'Compartilhe medidas, referências e informações do local.' },
-    { period: 'Execução', expectedSensations: 'Etapas e prazo variam conforme o serviço contratado.', careProtocol: 'Combine com a equipe as condições de acesso e organização do local.' },
+    { period: 'Antes da visita', expectedSensations: 'Descreva os sintomas e a localização aproximada do problema.', careProtocol: 'Se houver vazamento ativo, feche o registro de água se for seguro fazê-lo.' },
+    { period: 'Durante o atendimento', expectedSensations: 'O tempo varia conforme a origem e a extensão do problema.', careProtocol: 'A equipe orienta os cuidados e próximos passos após avaliar o local.' },
   ],
-  costTransparency: { baseRange: 'Orçamento sob consulta.', factors: ['Tipo e dimensão do projeto', 'Materiais e condições do local', 'Escopo e prazo desejados'], whatIsIncluded: ['Escopo proposto', 'Alinhamento das etapas do serviço'], note: 'Valores, prazos e disponibilidade são informados pela equipe após conhecer o projeto.' },
-  beforeAfterCase: { category: name, clinicalContext: 'Imagem ilustrativa de estrutura metálica.', beforeLabel: 'Estrutura metálica', afterLabel: 'Estrutura metálica', beforeImage: imageSet[imageIndex % imageSet.length], afterImage: imageSet[(imageIndex + 1) % imageSet.length], timeframe: 'Imagem ilustrativa' },
-  assignedDentistId: 'br-guedes-equipe', faqs: makeFaq(name),
+  costTransparency: { baseRange: 'Valor sob consulta.', factors: ['Tipo e localização do problema', 'Acesso às tubulações ou ao ponto do vazamento', 'Materiais e serviço necessários'], whatIsIncluded: ['Avaliação da situação', 'Alinhamento do serviço e do valor antes da execução'], note: 'Ligue para explicar o que aconteceu e combinar a avaliação.' },
+  beforeAfterCase: { category: name, clinicalContext: 'Imagem ilustrativa de serviços técnicos.', beforeLabel: 'Avaliação do problema', afterLabel: 'Serviço concluído', beforeImage: imageSet[imageIndex % imageSet.length], afterImage: imageSet[(imageIndex + 1) % imageSet.length], timeframe: 'Imagem ilustrativa' },
+  assignedDentistId: 'equipe-monarca', faqs: makeFaq(name),
 });
 
 export const SERVICES: ServiceDetail[] = [
-  makeService('estruturas-metalicas', 'Estruturas metálicas', 'Fabricação e montagem de estruturas metálicas.', 'Soluções em estruturas metálicas para projetos de diferentes portes. Consulte a equipe para apresentar as necessidades do seu projeto.', 0),
-  makeService('telhados-coberturas', 'Telhados e coberturas', 'Soluções para telhados e coberturas.', 'Serviços relacionados a telhados e coberturas, com escopo e etapas definidos conforme cada projeto.', 1),
-  makeService('engenharia-montagem', 'Engenharia e montagem', 'Serviços de engenharia e montagem.', 'Apoio em serviços de engenharia e montagem. Entre em contato para conversar sobre as características do seu projeto.', 2),
-  makeService('fabricacao-metalica', 'Fabricação metálica', 'Fabricação de componentes e estruturas metálicas.', 'Converse com a BR GUEDES sobre fabricação metálica e as especificações do seu projeto.', 3),
-  makeService('montagem-industrial', 'Montagem industrial', 'Montagem de estruturas e componentes.', 'Serviços de montagem para projetos e instalações. Consulte a empresa para entender as possibilidades.', 4),
-  makeService('reformas-manutencao', 'Reformas e manutenção', 'Serviços de reforma e manutenção.', 'Converse com a equipe sobre reformas, manutenção e soluções para estruturas e coberturas.', 5),
+  makeService('caca-vazamentos', 'Caça vazamentos', 'Localização cuidadosa de vazamentos.', 'Investigação de vazamentos e infiltrações em residências e imóveis comerciais.', 0),
+  makeService('desentupimento', 'Desentupimento', 'Desobstrução de tubulações e ralos.', 'Serviços de desentupimento para pias, ralos, vasos sanitários e tubulações.', 1),
+  makeService('encanador-24-horas', 'Encanador 24 horas', 'Atendimento hidráulico para emergências.', 'Atendimento 24 horas para emergências hidráulicas e problemas que precisam de avaliação rápida.', 2),
+  makeService('reparos-hidraulicos', 'Reparos hidráulicos', 'Conserto de vazamentos e instalações.', 'Reparos em torneiras, registros, tubulações e instalações hidráulicas.', 3),
+  makeService('manutencao-hidraulica', 'Manutenção hidráulica', 'Cuidados e manutenção das instalações.', 'Manutenção de sistemas hidráulicos residenciais e comerciais.', 4),
+  makeService('manutencao-geral', 'Manutenção geral', 'Serviços de manutenção para o imóvel.', 'Serviços de manutenção geral para cuidar de necessidades do imóvel.', 5),
 ];
 
 export interface EmergencyCondition { id: string; title: string; urgency: string; symptoms: string[]; immediateAction: string[]; clinicTreatment: string }
@@ -109,6 +98,6 @@ export interface BlogPost {
   content: { intro: string; sections: { heading: string; body: string }[]; faqs?: { question: string; answer: string }[] };
 }
 export const BLOG_POSTS: BlogPost[] = [
-  { slug: 'planejamento-de-estrutura-metalica', title: 'O que considerar ao planejar uma estrutura metálica', category: 'Estruturas metálicas', readTime: '3 min de leitura', publishDate: '2026-10-13', lastUpdated: '2026-10-13', authorId: 'br-guedes-equipe', excerpt: 'Conheça alguns pontos para organizar as informações do projeto antes de solicitar uma avaliação.', leadImage: imageSet[0], relatedServiceSlug: 'estruturas-metalicas', content: { intro: 'Um bom planejamento começa com as necessidades do espaço, o uso previsto e as dimensões disponíveis. Reunir essas informações ajuda a iniciar a conversa sobre a estrutura metálica.', sections: [{ heading: 'Reúna as informações do local', body: 'Anote as medidas disponíveis, as condições de acesso e o uso que a estrutura terá. Fotografias de referência também podem ajudar a explicar a ideia.' }, { heading: 'Converse sobre escopo e etapas', body: 'Cada projeto tem características próprias. Entre em contato com a BR GUEDES para conversar sobre o escopo, as etapas e o prazo.' }] } },
-  { slug: 'cuidados-com-telhados-e-coberturas', title: 'Cuidados com telhados e coberturas', category: 'Telhados e coberturas', readTime: '3 min de leitura', publishDate: '2026-10-13', lastUpdated: '2026-10-13', authorId: 'br-guedes-equipe', excerpt: 'Acompanhar as condições visíveis da cobertura pode ajudar a identificar quando é hora de buscar orientação profissional.', leadImage: imageSet[1], relatedServiceSlug: 'telhados-coberturas', content: { intro: 'Telhados e coberturas estão expostos ao tempo e podem precisar de avaliação ao longo dos anos. Observe sinais visíveis sem subir no telhado ou se expor a riscos.', sections: [{ heading: 'Observe sinais com segurança', body: 'Manchas de umidade, peças deslocadas ou danos aparentes podem indicar que uma avaliação é necessária. Registre o que notar a partir de um local seguro.' }, { heading: 'Peça orientação', body: 'Explique o que observou e compartilhe imagens feitas do chão. A equipe poderá conversar sobre os próximos passos.' }] } },
+  { slug: 'sinais-de-vazamento-em-casa', title: 'Sinais de vazamento que merecem atenção', category: 'Caça vazamentos', readTime: '3 min de leitura', publishDate: '2026-10-14', lastUpdated: '2026-10-14', authorId: 'equipe-monarca', excerpt: 'Manchas de umidade, goteiras e aumento no consumo podem indicar um vazamento.', leadImage: imageSet[0], relatedServiceSlug: 'caca-vazamentos', content: { intro: 'Nem todo vazamento fica visível. Observar mudanças no imóvel e no consumo de água pode ajudar a perceber o problema mais cedo.', sections: [{ heading: 'Observe manchas e umidade', body: 'Manchas persistentes, pintura estufada e cheiro de umidade podem indicar água escapando em uma parede, teto ou piso.' }, { heading: 'Fique atento ao consumo', body: 'Se a conta de água subir sem uma mudança no uso, vale investigar. Se houver vazamento ativo, feche o registro se for seguro e entre em contato com um profissional.' }] } },
+  { slug: 'como-evitar-entupimentos', title: 'Cuidados simples para evitar entupimentos', category: 'Desentupimento', readTime: '3 min de leitura', publishDate: '2026-10-14', lastUpdated: '2026-10-14', authorId: 'equipe-monarca', excerpt: 'Alguns hábitos ajudam a reduzir resíduos acumulados em pias, ralos e tubulações.', leadImage: imageSet[1], relatedServiceSlug: 'desentupimento', content: { intro: 'Gordura, restos de comida e objetos inadequados podem se acumular nas tubulações e dificultar o escoamento.', sections: [{ heading: 'Cuide da pia da cozinha', body: 'Evite despejar óleo e gordura no ralo. Espere esfriar e descarte em recipiente apropriado.' }, { heading: 'Proteja ralos e vasos', body: 'Use telas nos ralos para reter cabelos e resíduos. No vaso sanitário, descarte apenas papel higiênico e itens próprios para o encanamento.' }] } },
 ];

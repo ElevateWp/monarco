@@ -1,192 +1,47 @@
-import React from 'react';
-import { Metadata } from 'next';
-import { CLINIC_INFO } from '@/lib/clinic-data';
+import type { Metadata } from 'next';
+import { Clock3, MapPin, Phone } from 'lucide-react';
 import Breadcrumbs from '@/components/layout/Breadcrumbs';
-import Button from '@/components/ui/Button';
-import WordRevealH1 from '@/components/motion/WordRevealH1';
-import TextureBackground from '@/components/layout/TextureBackground';
-import AnimateOnScroll from '@/components/motion/AnimateOnScroll';
+import { CLINIC_INFO } from '@/lib/clinic-data';
 import { createMetadata } from '@/lib/seo';
 
 export const metadata: Metadata = createMetadata({
-  title: 'Contato e localização',
-  description:
-    'Entre em contato com a BR GUEDES Engenharia e Montagem para conversar sobre estruturas metálicas, telhados e coberturas em Volta Redonda, RJ.',
-  pathname: '/contact/',
+  title: 'Contato 24 horas',
+  description: 'Fale com a Monarca Caça Vazamentos para atendimento 24 horas em Caieiras e região.',
+  pathname: '/contato/',
 });
 
 export default function ContactPage() {
-  return (
-    <div className="flex flex-col w-full bg-paper">
-      {/* Introdução de contato */}
-      <section className="relative py-16 md:py-24 border-b border-mist overflow-hidden">
-        <TextureBackground variant="contact" className="opacity-30" />
-
-        <div className="relative z-10 max-w-site mx-auto px-6 md:px-12">
-          <Breadcrumbs items={[{ name: 'Contato', path: '/contact/' }]} />
-
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mt-8">
-            <div className="lg:col-span-8">
-              <AnimateOnScroll animation="fade-right" duration={0.8}>
-                <span className="font-body text-13 text-forest-ink/60 block mb-3 uppercase tracking-wider font-medium">
-                  Engenharia e montagem
-                </span>
-                <WordRevealH1 text="Fale com a nossa equipe." />
-                <p className="font-body text-17 md:text-21 text-forest-ink/90 leading-relaxed mt-6 max-w-2xl">
-                  Ligue para conversar sobre o seu projeto de estruturas metálicas ou coberturas.
-                </p>
-              </AnimateOnScroll>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION 2-7: Contact Methods Directory, Hours, Address & Map */}
-      <section className="py-20 md:py-32 border-b border-mist">
-        <div className="max-w-site mx-auto px-6 md:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-            {/* Direct Communication Channels List */}
-            <div className="lg:col-span-6 flex flex-col space-y-8">
-              <AnimateOnScroll animation="fade-right" duration={0.8}>
-                <div>
-                  <span className="font-body text-13 text-forest-ink/60 block mb-2 font-medium uppercase tracking-wider">
-                    Fale conosco
-                  </span>
-                  <h2 className="font-display text-26 md:text-33 text-forest-ink mb-6">
-                    Fale conosco
-                  </h2>
-
-                  <div className="divide-y divide-mist border-t border-b border-mist">
-                    {/* Call */}
-                    <div className="py-5 flex flex-col sm:flex-row sm:items-center justify-between gap-2 bg-mist/30 px-4 -mx-4 rounded-sm">
-                      <div>
-                        <span className="font-body text-13 text-forest font-semibold block">Ligue para nossa equipe</span>
-                        <a
-                          href={`tel:${CLINIC_INFO.contact.phone.replace(/[^0-9+]/g, '')}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="font-display text-21 text-forest font-bold hover:underline"
-                        >
-                          {CLINIC_INFO.contact.phone}
-                        </a>
-                      </div>
-                      <span className="font-body text-13 text-forest font-medium">Dúvidas sobre o projeto</span>
-                    </div>
-
-                    {/* Phone */}
-                    <div className="py-5 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                      <div>
-                        <span className="font-body text-13 text-forest-ink/60 block">Telefone</span>
-                        <a
-                          href={`tel:${CLINIC_INFO.contact.phone.replace(/[^0-9+]/g, '')}`}
-                          className="font-display text-21 text-forest hover:underline"
-                        >
-                          {CLINIC_INFO.contact.phone}
-                        </a>
-                      </div>
-                      <span className="font-body text-13 text-forest-ink/60">Consulte o horário de atendimento abaixo</span>
-                    </div>
-
-                  </div>
-                </div>
-              </AnimateOnScroll>
-
-              {/* Physical Service Area & Directions */}
-              <AnimateOnScroll animation="fade-up" duration={0.8} delay={0.2}>
-                <div>
-                  <span className="font-body text-13 text-forest-ink/60 block mb-2 font-medium uppercase tracking-wider">
-                    Localização
-                  </span>
-                  <h3 className="font-display text-21 text-forest-ink mb-3">
-                    {CLINIC_INFO.name}
-                  </h3>
-                  <address className="not-italic font-body text-15 text-forest-ink/90 leading-relaxed mb-4">
-                    Volta Redonda, Rio de Janeiro, Brasil
-                  </address>
-                  <div className="p-4 bg-mist/40 border-l-2 border-forest font-body text-13 text-forest-ink/80 leading-relaxed">
-                    <strong>Endereço:</strong> {CLINIC_INFO.primaryLocation.directions}
-                  </div>
-                </div>
-              </AnimateOnScroll>
-            </div>
-
-            {/* Right: Opening Hours Table & Stylized Palette Map */}
-            <div className="lg:col-span-6 flex flex-col space-y-8">
-              <AnimateOnScroll animation="fade-left" duration={0.8}>
-                <div>
-                  <span className="font-body text-13 text-forest-ink/60 block mb-2 font-medium uppercase tracking-wider">
-                    Horário de funcionamento
-                  </span>
-                  <div className="border border-mist divide-y divide-mist bg-paper font-body text-13 shadow-sm">
-                    {CLINIC_INFO.schedule.map((item) => (
-                      <div key={item.day} className="p-3.5 flex justify-between">
-                        <span className="font-medium text-forest-ink">{item.day}</span>
-                        <span className="tabular-nums text-forest-ink/80">{item.hours}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </AnimateOnScroll>
-
-              {/* Stylized Palette Map */}
-              <AnimateOnScroll animation="zoom-in" duration={0.8} delay={0.2}>
-                <div className="p-8 bg-forest text-paper flex flex-col justify-between aspect-[16/10] shadow-sm">
-                  <div>
-                    <span className="font-body text-13 text-lime block mb-2 font-medium uppercase tracking-wider">
-                      Localização
-                    </span>
-                    <h3 className="font-display text-26 text-paper mb-2">
-                      {CLINIC_INFO.name}
-                    </h3>
-                    <p className="font-body text-13 text-paper/80 leading-relaxed">
-                      {CLINIC_INFO.primaryLocation.directions}
-                    </p>
-                  </div>
-
-                  <div className="pt-6 border-t border-mist/20 flex flex-wrap items-center justify-between gap-4">
-                    <Button
-                      href={`tel:${CLINIC_INFO.contact.phone.replace(/[^0-9+]/g, '')}`}
-                      variant="lime"
-                      size="sm"
-                    >
-                      Ligar para nossa equipe
-                    </Button>
-                    <a
-                      href={`tel:${CLINIC_INFO.contact.phone.replace(/[^0-9+]/g, '')}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="font-body text-13 text-lime hover:underline font-semibold"
-                    >
-                      Telefone: {CLINIC_INFO.contact.phone}
-                    </a>
-                  </div>
-                </div>
-              </AnimateOnScroll>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION 8: Final Contact / Appointment CTA */}
-      <section className="py-20 md:py-28 bg-forest text-paper">
-        <div className="max-w-site mx-auto px-6 md:px-12 flex flex-col md:flex-row md:items-center justify-between gap-8">
-          <AnimateOnScroll animation="fade-right" duration={0.8}>
-            <div>
-              <span className="font-body text-13 text-lime uppercase tracking-wider block mb-2 font-medium">
-                Converse sobre o seu projeto
-              </span>
-              <h2 className="font-display text-33 md:text-41 text-paper">
-                Precisa de uma solução em estruturas metálicas?
-              </h2>
-            </div>
-          </AnimateOnScroll>
-          <AnimateOnScroll animation="fade-left" duration={0.8} delay={0.2}>
-            <Button href="/solicitar-orcamento/" variant="lime" size="lg">
-              Solicitar orçamento
-            </Button>
-          </AnimateOnScroll>
-        </div>
-      </section>
-    </div>
-  );
+  const phone = CLINIC_INFO.contact.phone;
+  const address = `${CLINIC_INFO.primaryLocation.street} - Vera Tereza, ${CLINIC_INFO.primaryLocation.city} - SP, ${CLINIC_INFO.primaryLocation.postalCode}, Brasil`;
+  return <main className="min-h-[70vh] bg-paper">
+    <section className="border-b border-mist bg-paper-secondary py-12 md:py-20">
+      <div className="mx-auto max-w-site px-6 md:px-12"><Breadcrumbs items={[{ name: 'Contato', path: '/contato/' }]} />
+        <p className="mt-8 font-body text-13 font-medium uppercase tracking-wider text-brand">Monarca Caça Vazamentos</p>
+        <h1 className="mt-3 max-w-3xl font-display text-41 text-forest-ink md:text-55">Precisa de um encanador agora?</h1>
+        <p className="mt-5 max-w-2xl font-body text-17 leading-relaxed text-forest-light">Atendimento 24 horas para caça vazamentos, desentupimento e manutenção hidráulica em Caieiras e região.</p>
+      </div>
+    </section>
+    <section className="mx-auto grid max-w-site gap-6 px-6 py-12 md:grid-cols-2 md:px-12 md:py-20">
+      <article className="border border-mist bg-paper p-7 md:p-9">
+        <Phone className="text-brand" size={28} />
+        <h2 className="mt-5 font-display text-26 text-forest-ink">Atendimento telefônico</h2>
+        <p className="mt-3 font-body text-15 leading-relaxed text-forest-light">Ligue e informe o endereço, o tipo de problema e quando começou.</p>
+        <a className="mt-5 inline-flex font-display text-26 font-semibold text-brand hover:underline" href="tel:+5511975475490">{phone}</a>
+        <p className="mt-3 font-body text-13 font-medium text-forest-light">24 horas, todos os dias</p>
+      </article>
+      <article className="border border-mist bg-paper p-7 md:p-9">
+        <MapPin className="text-brand" size={28} />
+        <h2 className="mt-5 font-display text-26 text-forest-ink">Endereço</h2>
+        <address className="mt-3 not-italic font-body text-15 leading-relaxed text-forest-light">{address}</address>
+        <p className="mt-2 font-body text-13 text-forest-light">Plus Code: {CLINIC_INFO.primaryLocation.landmarks}</p>
+        <a className="mt-5 inline-flex border border-mist px-5 py-3 font-body text-15 font-medium text-forest-ink hover:border-brand" href="https://www.google.com/maps/search/?api=1&query=Rua+Tom%C3%A1s+Parizotto%2C+354%2C+Vera+Tereza%2C+Caieiras+-+SP%2C+07718-000" target="_blank" rel="noreferrer">Abrir no Google Maps</a>
+        <a className="ml-3 mt-5 inline-flex min-h-12 items-center bg-brand px-5 font-body text-15 font-semibold text-white hover:bg-brand-hover" href="https://wa.me/5511975475490" target="_blank" rel="noreferrer">WhatsApp</a>
+      </article>
+      <article className="border border-mist bg-paper-secondary p-7 md:col-span-2 md:p-9">
+        <Clock3 className="text-brand" size={28} />
+        <h2 className="mt-5 font-display text-26 text-forest-ink">Horário de atendimento</h2>
+        <div className="mt-5 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">{CLINIC_INFO.schedule.map((item) => <div key={item.day} className="flex justify-between border border-mist bg-paper px-4 py-3 font-body text-13"><span className="font-medium text-forest-ink">{item.day}</span><span className="text-brand">24 horas</span></div>)}</div>
+      </article>
+    </section>
+  </main>;
 }

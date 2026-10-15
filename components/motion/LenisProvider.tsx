@@ -29,7 +29,9 @@ export default function LenisProvider({ children }: { children: React.ReactNode 
     }
 
     const lenis = new Lenis({
-      lerp: MOTION.lenis.lerp,
+      // The homepage hero maps scroll directly to image frames. Use less
+      // inertia there so large wheel gestures do not leave the sequence behind.
+      lerp: pathname === '/' ? 0.18 : MOTION.lenis.lerp,
       duration: MOTION.lenis.duration,
       wheelMultiplier: MOTION.lenis.wheelMultiplier,
       smoothWheel: true,

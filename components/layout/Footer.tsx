@@ -11,10 +11,10 @@ export default function Footer() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 pb-16 border-b border-mist/20">
           <div className="lg:col-span-6">
             <div className="flex items-center gap-4 mb-5">
-              <div className="w-14 h-14 sm:w-16 sm:h-16 bg-paper rounded-xl p-2 flex items-center justify-center flex-shrink-0 shadow-md">
+              <div className="w-14 h-14 sm:w-16 sm:h-16 bg-[#111111] rounded-xl p-1 flex items-center justify-center flex-shrink-0 shadow-md">
                 <Image
                   src="/images/logo.png"
-                  alt="Logotipo do BR GUEDES Engenharia e Montagem"
+                  alt="Logotipo da Monarca"
                   width={60}
                   height={60}
                   className="object-contain w-full h-full"
@@ -22,15 +22,15 @@ export default function Footer() {
               </div>
               <div className="flex flex-col">
                 <span className="font-display text-24 md:text-30 font-medium leading-tight">
-                  BR GUEDES Engenharia e Montagem
+                  Monarca Caça Vazamentos
                 </span>
                 <span className="font-body text-13 text-paper/70 font-medium">
-                  Engenharia e montagem
+                  Caça vazamentos · Desentupimento
                 </span>
               </div>
             </div>
             <p className="font-body text-16 text-paper/80 leading-relaxed max-w-xl">
-              Soluções em estruturas metálicas, telhados e coberturas em Volta Redonda, Rio de Janeiro.
+              Caça vazamentos, desentupimento e manutenção geral 24 horas em Caieiras e região.
             </p>
             <div className="mt-6 flex flex-wrap gap-4 text-13 text-paper/60">
               <span>{CLINIC_INFO.contact.phone}</span>
@@ -43,7 +43,7 @@ export default function Footer() {
                 Fale com a nossa equipe
               </span>
               <p className="font-body text-15 text-paper/90 mb-4">
-                Converse sobre o escopo e as necessidades do seu projeto.
+                Precisa de ajuda com vazamentos ou entupimentos? Ligue para a equipe, 24 horas.
               </p>
               <div className="flex flex-wrap items-center gap-4">
                 <a
@@ -55,10 +55,10 @@ export default function Footer() {
                   Telefone: {CLINIC_INFO.contact.phone}
                 </a>
                 <Link
-                  href="https://www.google.com/maps/search/?api=1&query=Av.+Alm.+Adalberto+de+Barros+Nunes+5501+Siderlandia+Volta+Redonda+RJ+27274-200+Brazil"
+                  href="/contato/"
                   className="font-body text-13 text-paper/80 underline underline-offset-4 hover:text-paper"
                 >
-                  Como chegar
+                  Solicitar atendimento
                 </Link>
               </div>
             </div>
@@ -93,8 +93,8 @@ export default function Footer() {
             </span>
             <ul className="space-y-2.5 font-body text-15">
               <li>
-                <Link href="/testimonials/" className="text-paper/80 hover:text-lime transition-colors">
-                  Depoimentos
+                <Link href="/avaliacoes/" className="text-paper/80 hover:text-lime transition-colors">
+                  Leia avaliações de clientes
                 </Link>
               </li>
             </ul>
@@ -107,28 +107,28 @@ export default function Footer() {
             </span>
             <ul className="space-y-2.5 font-body text-15">
               <li>
-                <Link href="/about/" className="text-paper/80 hover:text-lime transition-colors">
+                <Link href="/sobre/" className="text-paper/80 hover:text-lime transition-colors">
                   Sobre
                 </Link>
               </li>
               <li>
-                <Link href="/blog/" className="text-paper/80 hover:text-lime transition-colors">
-                  Artigos técnicos
+                <Link href="/dicas/" className="text-paper/80 hover:text-lime transition-colors">
+                  Dicas hidráulicas
                 </Link>
               </li>
               <li>
-                <Link href="/solicitar-orcamento/" className="text-paper/80 hover:text-lime transition-colors">
-                  Solicitar orçamento
+                <Link href="/orcamento/" className="text-paper/80 hover:text-lime transition-colors">
+                  Solicitar atendimento
                 </Link>
               </li>
               <li>
-                <Link href="/contact/" className="text-paper/80 hover:text-lime transition-colors">
+                <Link href="/contato/" className="text-paper/80 hover:text-lime transition-colors">
                   Contato
                 </Link>
               </li>
               <li>
                 <Link href={`tel:${CLINIC_INFO.contact.phone.replace(/[^0-9+]/g, '')}`} className="text-paper/80 hover:text-lime transition-colors">
-                  Ligar para a empresa
+                  Ligar 24 horas
                 </Link>
               </li>
             </ul>
@@ -151,12 +151,6 @@ export default function Footer() {
                   {CLINIC_INFO.contact.phone}
                 </a>
               </div>
-              <div>
-                <span className="text-paper/50 block text-13">Endereço:</span>
-                <address className="not-italic leading-relaxed text-13 text-paper/70">
-                  {CLINIC_INFO.primaryLocation.directions}
-                </address>
-              </div>
             </div>
           </div>
         </div>
@@ -167,8 +161,8 @@ export default function Footer() {
             © {new Date().getFullYear()} {CLINIC_INFO.legalName}. Todos os direitos reservados.
           </div>
           <div className="flex items-center gap-6">
-            <span>Aberto de segunda a quinta, das 8h às 18h</span>
-            <span>BR GUEDES Engenharia e Montagem</span>
+            <span>Atendimento 24 horas</span>
+            <span>Monarca Caça Vazamentos</span>
           </div>
         </div>
       </div>

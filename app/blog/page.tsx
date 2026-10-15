@@ -9,10 +9,10 @@ import AnimateOnScroll from '@/components/motion/AnimateOnScroll';
 import { createMetadata } from '@/lib/seo';
 
 export const metadata: Metadata = createMetadata({
-  title: 'Dicas de construção',
+  title: 'Dicas hidráulicas',
   description:
-    'Conteúdos sobre planejamento de estruturas metálicas, engenharia e cuidados com telhados e coberturas.',
-  pathname: '/blog/',
+    'Orientações para identificar vazamentos, evitar entupimentos e cuidar das instalações hidráulicas.',
+  pathname: '/dicas/',
 });
 
 export default function BlogIndexPage() {
@@ -23,17 +23,17 @@ export default function BlogIndexPage() {
         <TextureBackground variant="blog" className="opacity-20" />
 
         <div className="relative z-10 max-w-site mx-auto px-6 md:px-12">
-          <Breadcrumbs items={[{ name: 'Dicas de construção', path: '/blog/' }]} />
+          <Breadcrumbs items={[{ name: 'Dicas hidráulicas', path: '/dicas/' }]} />
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mt-8">
             <div className="lg:col-span-8">
               <AnimateOnScroll animation="fade-right" duration={0.8}>
                 <span className="font-body text-13 text-forest-ink/60 block mb-3 uppercase tracking-wider font-medium">
-                  Dicas de construção
+                  Dicas hidráulicas
                 </span>
-                <WordRevealH1 text="Dicas úteis para a sua próxima obra." />
+                <WordRevealH1 text="Orientações úteis para cuidar da hidráulica do imóvel." />
                 <p className="font-body text-17 md:text-21 text-forest-ink/90 leading-relaxed mt-6 max-w-2xl">
-                  Confira orientações sobre estruturas metálicas, telhados e planejamento do projeto.
+                  Leia dicas sobre vazamentos, entupimentos e manutenção hidráulica.
                 </p>
               </AnimateOnScroll>
             </div>
@@ -59,20 +59,20 @@ export default function BlogIndexPage() {
                       {/* Title & Excerpt */}
                       <div className="lg:col-span-7">
                         <h2 className="font-display text-21 md:text-26 text-forest-ink group-hover:text-forest transition-colors mb-2">
-                          <Link href={`/blog/${post.slug}/`} className="no-underline text-inherit">
+                          <Link href={`/dicas/${post.slug}/`} className="no-underline text-inherit">
                             {post.title}
                           </Link>
                         </h2>
                         <p className="font-body text-15 text-forest-ink/80 leading-relaxed mb-4">
                           {post.excerpt}
                         </p>
-                        <span className="font-body text-13 text-forest-ink/60 block">Por BR GUEDES Engenharia e Montagem</span>
+                        <span className="font-body text-13 text-forest-ink/60 block">Por Monarca Caça Vazamentos</span>
                       </div>
 
                       {/* Action */}
                       <div className="lg:col-span-2 text-left lg:text-right">
                         <Link
-                          href={`/blog/${post.slug}/`}
+                          href={`/dicas/${post.slug}/`}
                           className="font-body text-13 text-forest font-medium underline underline-offset-4 group-hover:text-forest-light"
                         >
                           Ler artigo →

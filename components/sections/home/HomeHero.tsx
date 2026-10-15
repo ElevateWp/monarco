@@ -1,217 +1,241 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import gsap from 'gsap';
-import Image from 'next/image';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { CLINIC_INFO } from '@/lib/clinic-data';
-import { MOTION, isReducedMotion } from '@/lib/motion';
-import Button from '@/components/ui/Button';
+import { isReducedMotion } from '@/lib/motion';
+
+const FRAME_COUNT = 240;
+const framePath = (index: number) =>
+  `/frames/monarca-hero/ezgif-frame-${String(index + 1).padStart(3, '0')}.jpg`;
+
+if (typeof window !== 'undefined') gsap.registerPlugin(ScrollTrigger);
 
 export default function HomeHero() {
-  const heroRef = useRef<HTMLElement>(null);
-  const h1Ref = useRef<HTMLHeadingElement>(null);
-  const wordsRef = useRef<HTMLSpanElement[]>([]);
-  const paraRef = useRef<HTMLParagraphElement>(null);
-  const actionsRef = useRef<HTMLDivElement>(null);
-  const infoRef = useRef<HTMLDivElement>(null);
-  const locationRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const framesRef = useRef(new Map<number, HTMLImageElement>());
+  const targetFrameRef = useRef(0);
+  const drawRef = useRef<(index: number) => void>(() => undefined);
+  const requestRef = useRef<(index: number) => void>(() => undefined);
+
+  const drawFrame = useCallback((index: number) => {
+    const canvas = canvasRef.current;
+    const context = canvas?.getContext('2d');
+    if (!canvas || !context) return;
+
+    const frames = framesRef.current;
+    let image = frames.get(index);
+    if (!image?.complete || !image.naturalWidth) {
+      // Fall back to the nearest decoded frame while the requested one loads.
+      let nearestDistance = Number.POSITIVE_INFINITY;
+      for (const [frameIndex, candidate] of frames) {
+        const distance = Math.abs(frameIndex - index);
+        if (distance < nearestDistance && candidate.complete && candidate.naturalWidth) {
+          nearestDistance = distance;
+          image = candidate;
+        }
+      }
+    }
+    if (!image?.naturalWidth) return;
+
+    const scale = Math.max(canvas.width / image.naturalWidth, canvas.height / image.naturalHeight);
+    const width = image.naturalWidth * scale;
+    const height = image.naturalHeight * scale;
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    context.drawImage(image, (canvas.width - width) / 2, (canvas.height - height) / 2, width, height);
+  }, []);
+
+  drawRef.current = drawFrame;
 
   useEffect(() => {
-    if (isReducedMotion() || !heroRef.current) return;
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const context = canvas.getContext('2d');
+    if (!context) return;
+    context.imageSmoothingEnabled = true;
+    context.imageSmoothingQuality = 'high';
 
-    const words = wordsRef.current.filter(Boolean);
+    const resizeCanvas = () => {
+      const rect = canvas.getBoundingClientRect();
+      const pixelRatio = Math.min(window.devicePixelRatio || 1, 1.5);
+      canvas.width = Math.round(rect.width * pixelRatio);
+      canvas.height = Math.round(rect.height * pixelRatio);
+      drawRef.current(targetFrameRef.current);
+    };
+    resizeCanvas();
+    const observer = new ResizeObserver(resizeCanvas);
+    observer.observe(canvas);
 
-    const tl = gsap.timeline({
-      delay: 0.5,
+    const activeLoads = new Map<number, HTMLImageElement>();
+    let queue: number[] = [];
+    let disposed = false;
+    let drawScheduled = false;
+
+    const drawLatestFrame = () => {
+      if (drawScheduled) return;
+      drawScheduled = true;
+      requestAnimationFrame(() => {
+        drawScheduled = false;
+        if (!disposed) drawRef.current(targetFrameRef.current);
+      });
+    };
+
+    const pumpQueue = () => {
+      while (!disposed && activeLoads.size < 6 && queue.length > 0) {
+        const frameIndex = queue.shift();
+        if (frameIndex === undefined || framesRef.current.has(frameIndex)) continue;
+
+        const image = new Image();
+        image.decoding = 'async';
+        framesRef.current.set(frameIndex, image);
+        activeLoads.set(frameIndex, image);
+        image.onload = () => {
+          activeLoads.delete(frameIndex);
+          drawLatestFrame();
+          pumpQueue();
+        };
+        image.onerror = () => {
+          activeLoads.delete(frameIndex);
+          framesRef.current.delete(frameIndex);
+          pumpQueue();
+        };
+        image.src = framePath(frameIndex);
+      }
+    };
+
+    const requestFrame = (index: number) => {
+      const bounded = Math.max(0, Math.min(FRAME_COUNT - 1, index));
+      const previous = targetFrameRef.current;
+      if (bounded === previous && framesRef.current.has(bounded)) {
+        drawLatestFrame();
+        return;
+      }
+      targetFrameRef.current = bounded;
+      const cache = framesRef.current;
+      const first = Math.max(0, bounded - 6);
+      const last = Math.min(FRAME_COUNT - 1, bounded + 10);
+
+      // Discard stale queued work and keep no more than four frame downloads active.
+      const direction = bounded >= previous ? 1 : -1;
+      const wanted = [bounded];
+      for (let offset = 1; offset <= 8; offset += 1) {
+        const ahead = bounded + offset * direction;
+        if (ahead >= 0 && ahead < FRAME_COUNT) wanted.push(ahead);
+        if (offset <= 3) {
+          const behind = bounded - offset * direction;
+          if (behind >= 0 && behind < FRAME_COUNT) wanted.push(behind);
+        }
+      }
+      queue = wanted.filter((frameIndex) => !cache.has(frameIndex));
+
+      for (const [cachedIndex, image] of cache) {
+        if (cachedIndex < first || cachedIndex > last) {
+          if (activeLoads.get(cachedIndex) === image) activeLoads.delete(cachedIndex);
+          image.onload = null;
+          image.onerror = null;
+          image.src = '';
+          cache.delete(cachedIndex);
+        }
+      }
+
+      // Keep the target and nearby frames in flight; abort distant requests so
+      // they cannot occupy every slot after a fast scroll or direction change.
+      for (const [frameIndex, image] of activeLoads) {
+        if (Math.abs(frameIndex - bounded) > 4) {
+          activeLoads.delete(frameIndex);
+          cache.delete(frameIndex);
+          image.onload = null;
+          image.onerror = null;
+          image.src = '';
+        }
+      }
+
+      drawLatestFrame();
+      pumpQueue();
+    };
+    requestRef.current = requestFrame;
+
+    const cleanup = () => {
+      disposed = true;
+      queue = [];
+      for (const image of activeLoads.values()) {
+        image.onload = null;
+        image.onerror = null;
+        image.src = '';
+      }
+      activeLoads.clear();
+      framesRef.current.clear();
+      observer.disconnect();
+    };
+
+    requestFrame(isReducedMotion() ? FRAME_COUNT - 1 : 0);
+
+    if (isReducedMotion() || !sectionRef.current) return cleanup;
+
+    const section = sectionRef.current;
+    const playhead = { frame: 0 };
+    const tween = gsap.to(playhead, {
+      frame: FRAME_COUNT - 1,
+      ease: 'none',
+      onUpdate: () => requestRef.current(Math.round(playhead.frame)),
+      scrollTrigger: {
+        trigger: section,
+        start: 'top top',
+        end: '+=420%',
+        // Lenis already smooths wheel input; an additional timed scrub made
+        // the hero trail behind fast scrolling, so keep the frame tied to the
+        // current (already smoothed) scroll position.
+        scrub: true,
+        pin: true,
+        pinSpacing: true,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+      },
     });
 
-    // 0.50s H1 word reveal
-    if (words.length > 0) {
-      tl.fromTo(
-        words,
-        { y: '115%', opacity: 0 },
-        {
-          y: '0%',
-          opacity: 1,
-          duration: 0.85,
-          stagger: 0.04,
-          ease: 'power3.out',
-        }
-      );
-    }
-
-    // Supporting paragraph fades up
-    if (paraRef.current) {
-      tl.fromTo(
-        paraRef.current,
-        { y: 18, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.7,
-          ease: 'power2.out',
-        },
-        '-=0.5'
-      );
-    }
-
-    // Actions arrive with scale
-    if (actionsRef.current) {
-      tl.fromTo(
-        actionsRef.current.children,
-        { scale: 0.95, opacity: 0, y: 10 },
-        {
-          scale: 1,
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          stagger: 0.1,
-          ease: 'power3.out',
-        },
-        '-=0.4'
-      );
-    }
-
-    // Business information slides in from right
-    if (infoRef.current) {
-      tl.fromTo(
-        infoRef.current,
-        { x: 30, opacity: 0 },
-        {
-          x: 0,
-          opacity: 1,
-          duration: 0.8,
-          ease: 'power3.out',
-        },
-        '-=0.5'
-      );
-    }
-
-    // Service area line
-    if (locationRef.current) {
-      tl.fromTo(
-        locationRef.current,
-        { opacity: 0 },
-        { opacity: 1, duration: 0.5 },
-        '-=0.3'
-      );
-    }
-
     return () => {
-      tl.kill();
+      tween.scrollTrigger?.kill();
+      tween.kill();
+      cleanup();
     };
   }, []);
 
-  const headline = 'Estruturas metálicas e coberturas para o seu projeto.';
-  const headlineWords = headline.split(' ');
-
   return (
-    <section
-      ref={heroRef}
-      className="relative min-h-[85vh] lg:min-h-[90vh] flex items-center bg-paper overflow-hidden py-12 sm:py-16 md:py-24"
-    >
-      <Image
-        src="/images/stock-roof-structure.jpg"
-        alt="Estrutura metálica de cobertura, imagem ilustrativa"
-        fill
-        priority
-        sizes="100vw"
-        className="object-cover object-[58%_center]"
+    <section ref={sectionRef} className="relative h-[100svh] min-h-[560px] w-full overflow-hidden bg-[#1A1A1A]">
+      <canvas
+        ref={canvasRef}
+        aria-label="Sequência visual em tela cheia, controlada pela rolagem"
+        className="absolute inset-0 h-full w-full"
       />
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 bg-gradient-to-r from-[#FFFFFF]/95 via-[#FFFFFF]/90 to-[#FFFFFF]/80 md:from-[#FFFFFF]/95 md:via-[#FFFFFF]/90 md:to-[#FFFFFF]/78"
-      />
+      <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(90deg,rgba(23,19,19,.58)_0%,rgba(23,19,19,.2)_48%,rgba(23,19,19,0)_82%),linear-gradient(0deg,rgba(23,19,19,.72)_0%,rgba(23,19,19,.08)_58%,rgba(23,19,19,.04)_100%)]" />
 
-      <div className="relative z-10 max-w-site mx-auto px-4 sm:px-6 md:px-12 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          {/* Columns 1–8: Left-aligned H1, Paragraph, Actions */}
-          <div className="lg:col-span-8 flex flex-col justify-center">
-            {/* Semantic Single H1 */}
-            <div className="flex items-center gap-3 mb-4 md:mb-5">
-              <span aria-hidden="true" className="h-px w-8 bg-[#E5242A]" />
-              <span className="font-body text-[11px] text-[#66758A] uppercase tracking-[0.14em]">
-                Engenharia e montagem · Volta Redonda, Rio de Janeiro
-              </span>
-            </div>
-            <h1
-              ref={h1Ref}
-              aria-label={headline}
-              className="font-display text-[#18243A] text-33 sm:text-41 md:text-52 lg:text-65 xl:text-81 leading-[1.05] tracking-[-0.03em] font-normal mb-6 md:mb-8 max-w-4xl"
-            >
-              {headlineWords.map((word, idx) => (
-                <React.Fragment key={idx}>
-                  <span className="inline-block overflow-hidden align-top pb-[0.08em] mr-[0.24em] last:mr-0">
-                    <span
-                      ref={(el) => {
-                        if (el) wordsRef.current[idx] = el;
-                      }}
-                      className={`inline-block will-change-transform ${['Estruturas', 'metálicas', 'coberturas'].includes(word) ? 'text-[#E5242A]' : ''}`}
-                    >
-                      {word}
-                    </span>
-                  </span>
-                  {(idx === 1 || idx === 4) && (
-                    <br className="hidden sm:block" />
-                  )}
-                </React.Fragment>
-              ))}
-            </h1>
+      <div className="absolute inset-x-0 bottom-0 z-10 mx-auto flex w-full max-w-site flex-col items-start px-5 pb-10 pt-20 text-white sm:px-8 sm:pb-14 md:px-12 md:pb-16">
+        <p className="mb-4 font-body text-[11px] uppercase tracking-[.18em] text-white/80 sm:text-xs">
+          Caça vazamentos · Desentupimento · Manutenção geral
+        </p>
+        <h1 className="max-w-4xl font-display text-4xl font-normal leading-[1.02] tracking-[-.035em] sm:text-5xl md:text-6xl lg:text-7xl">
+          Monarca <span className="text-[#FFE2D1]">Caça Vazamentos</span>
+        </h1>
+        <p className="mt-4 max-w-2xl font-body text-sm leading-relaxed text-white/90 sm:text-base md:text-lg">
+          Caça vazamentos, desentupimento e manutenção hidráulica em Caieiras e região. Atendimento 24 horas.
+        </p>
 
-            <p
-              ref={paraRef}
-              className="font-body text-15 sm:text-17 md:text-21 text-forest-ink/90 leading-relaxed mb-8 md:mb-10 max-w-2xl"
-            >
-              A BR GUEDES Engenharia e Montagem oferece soluções em fabricação e montagem de estruturas metálicas, telhados e coberturas.
-            </p>
-
-            <div
-              ref={actionsRef}
-              className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 mb-8"
-            >
-              <Button href="https://www.google.com/maps/search/?api=1&query=Av.+Alm.+Adalberto+de+Barros+Nunes+5501+Siderlandia+Volta+Redonda+RJ+27274-200+Brazil" variant="forest" size="lg" className="w-full sm:w-auto font-medium">
-                Como chegar
-              </Button>
-              <Button
-                href={`tel:${CLINIC_INFO.contact.phone.replace(/[^0-9+]/g, '')}`}
-                variant="ghost"
-                size="lg"
-                className="w-full sm:w-auto font-medium"
-              >
-                Ligar: {CLINIC_INFO.contact.phone}
-              </Button>
-            </div>
-
-            <div
-              ref={locationRef}
-              className="font-body text-13 text-[#18243A]/70 flex flex-wrap items-center gap-2"
-            >
-                <span className="font-medium text-[#18243A]">Nota 4,9 · 60 avaliações no Google</span>
-              <span className="hidden sm:inline">•</span>
-              <span>Volta Redonda, Rio de Janeiro, Brasil</span>
-              <span className="hidden sm:inline">•</span>
-            </div>
-          </div>
-
-          {/* Columns 9–12: Quiet Clinical Credential Brief */}
-          <div
-            ref={infoRef}
-            className="lg:col-span-4 lg:pl-4 flex flex-col justify-center"
+        <div className="mt-7 flex flex-wrap items-center gap-3 sm:gap-4">
+          <a
+            href={`tel:${CLINIC_INFO.contact.phone.replace(/[^0-9+]/g, '')}`}
+            className="inline-flex min-h-12 items-center justify-center bg-[#FF681F] px-6 font-body text-sm font-medium text-white transition-colors hover:bg-[#F4511E] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
           >
-            <div className="p-6 sm:p-8 bg-[#F2F6FC] border border-[#D9E2EF] shadow-sm flex flex-col space-y-4">
-              <span className="font-body text-13 text-[#18243A] uppercase tracking-wider font-semibold">
-                Fabricação e montagem
-              </span>
-              <p className="font-body text-13 sm:text-15 text-[#18243A]/90 leading-relaxed">
-                <strong className="text-[#18243A] font-semibold">BR GUEDES Engenharia e Montagem</strong> &mdash; soluções em estruturas metálicas e coberturas.
-              </p>
-              <div className="pt-3 border-t border-[#D9E2EF] flex items-center justify-between text-13 font-body text-[#18243A]/70">
-                <span>Telefone</span>
-                <span className="text-[#18243A] font-semibold">{CLINIC_INFO.contact.phone}</span>
-              </div>
-            </div>
-          </div>
+            Ligar: +55 11 97547-5490
+          </a>
+          <span className="font-body text-xs text-white/85 sm:text-sm">Atendimento 24 horas</span>
         </div>
+      </div>
+
+      <div aria-hidden="true" className="pointer-events-none absolute bottom-5 right-5 z-10 flex items-center gap-3 text-[10px] uppercase tracking-[.18em] text-white/80 sm:bottom-8 sm:right-10">
+        <span>Role para explorar</span>
+        <span className="h-px w-8 bg-white/70" />
       </div>
     </section>
   );

@@ -1,5 +1,2 @@
 import { redirect } from 'next/navigation';
-
-export default function LegacyEmergencyRoute() {
-  redirect('/contact/');
-}
+export default function LegacyRedirect() { redirect('/contato/'); }

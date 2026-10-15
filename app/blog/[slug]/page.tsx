@@ -1,8 +1,8 @@
 import React from 'react';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import Image from 'next/image';
 import Link from 'next/link';
+import { Droplets } from 'lucide-react';
 import { BLOG_POSTS, CLINIC_INFO, DENTISTS, SERVICES } from '@/lib/clinic-data';
 import Breadcrumbs from '@/components/layout/Breadcrumbs';
 import Button from '@/components/ui/Button';
@@ -28,9 +28,9 @@ export async function generateMetadata({ params }: BlogPostProps): Promise<Metad
   if (!post) return {};
 
   return createMetadata({
-    title: `${post.title} | Dicas de construção`,
+    title: `${post.title} | Dicas hidráulicas`,
     description: post.excerpt,
-    pathname: `/blog/${post.slug}/`,
+    pathname: `/dicas/${post.slug}/`,
     image: post.leadImage,
   });
 }
@@ -48,7 +48,7 @@ export default function SingleBlogPage({ params }: BlogPostProps) {
     title: p.title,
     subtitle: `${p.category} • ${p.readTime}`,
     description: p.excerpt,
-    href: `/blog/${p.slug}/`,
+    href: `/dicas/${p.slug}/`,
     theme: idx % 2 === 1 ? 'forest' : 'paper',
   }));
 
@@ -62,7 +62,7 @@ export default function SingleBlogPage({ params }: BlogPostProps) {
     dateModified: post.lastUpdated,
     author: {
       '@type': 'Person',
-      name: author?.name || 'BR GUEDES Engenharia e Montagem',
+      name: author?.name || 'Monarca Caça Vazamentos',
     },
     publisher: {
       '@type': 'Organization',
@@ -86,9 +86,9 @@ export default function SingleBlogPage({ params }: BlogPostProps) {
         <div className="max-w-site mx-auto px-6 md:px-12">
           <Breadcrumbs
             items={[
-              { name: 'Dicas de construção', path: '/blog/' },
-              { name: post.category, path: '/blog/' },
-              { name: post.title, path: `/blog/${post.slug}/` },
+              { name: 'Dicas hidráulicas', path: '/dicas/' },
+              { name: post.category, path: '/dicas/' },
+              { name: post.title, path: `/dicas/${post.slug}/` },
             ]}
           />
 
@@ -112,17 +112,12 @@ export default function SingleBlogPage({ params }: BlogPostProps) {
 
               {author && (
                 <div className="flex items-center gap-4 p-4 border border-mist bg-paper/60 shadow-sm">
-                  <div className="relative w-12 h-12 rounded-full overflow-hidden bg-mist flex-shrink-0">
-                    <Image
-                      src={author.image}
-                      alt={author.name}
-                      fill
-                      className="object-cover object-top"
-                    />
+                  <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-softBlue text-brand">
+                    <Droplets size={22} aria-hidden="true" />
                   </div>
                   <div>
                     <Link
-                      href="/about/"
+                      href="/sobre/"
                       className="font-display text-17 text-forest-ink hover:text-forest font-medium block"
                     >
                       {author.name}
@@ -138,15 +133,8 @@ export default function SingleBlogPage({ params }: BlogPostProps) {
 
           {/* Lead Image */}
           <AnimateOnScroll animation="zoom-in" duration={0.8}>
-            <div className="relative w-full aspect-[21/9] max-h-[500px] bg-mist overflow-hidden border border-mist my-12 shadow-sm">
-              <Image
-                src={post.leadImage}
-                alt={post.title}
-                fill
-                priority
-                sizes="(max-width: 1200px) 100vw, 1200px"
-                className="object-cover"
-              />
+            <div className="my-12 flex aspect-[21/9] max-h-[500px] w-full items-center justify-center overflow-hidden border border-mist bg-[#1A1A1A] text-[#FFE2D1] shadow-sm">
+              <div className="flex items-center gap-5"><Droplets size={48} /><span className="font-display text-26 sm:text-33">{post.category}</span></div>
             </div>
           </AnimateOnScroll>
 
@@ -213,7 +201,7 @@ export default function SingleBlogPage({ params }: BlogPostProps) {
       {relatedTrackItems.length > 0 && (
         <PinnedHorizontalTrack
           items={relatedTrackItems}
-          title="Mais dicas de construção"
+          title="Mais dicas hidráulicas"
         />
       )}
 
@@ -223,16 +211,16 @@ export default function SingleBlogPage({ params }: BlogPostProps) {
           <AnimateOnScroll animation="fade-right" duration={0.8}>
             <div>
               <span className="font-body text-13 text-lime uppercase tracking-wider block mb-2 font-medium">
-                Dicas de construção
+                Dicas hidráulicas
               </span>
               <h2 className="font-display text-33 md:text-41 text-paper">
-                Fale com nossa equipe sobre estruturas e coberturas
+                Fale com a equipe sobre vazamentos e entupimentos
               </h2>
             </div>
           </AnimateOnScroll>
           <AnimateOnScroll animation="fade-left" duration={0.8} delay={0.2}>
-            <Button href="/solicitar-orcamento/" variant="lime" size="lg">
-                Solicitar orçamento
+            <Button href="/orcamento/" variant="lime" size="lg">
+                Solicitar atendimento
             </Button>
           </AnimateOnScroll>
         </div>

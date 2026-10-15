@@ -1,8 +1,6 @@
 import React from 'react';
 import { Metadata } from 'next';
 import HomeHero from '@/components/sections/home/HomeHero';
-import HomeStats from '@/components/sections/home/HomeStats';
-import HomeTestimonials from '@/components/sections/home/HomeTestimonials';
 import PinnedHorizontalTrack, { HorizontalTrackItem } from '@/components/motion/PinnedHorizontalTrack';
 import HomeWhyUs from '@/components/sections/home/HomeWhyUs';
 import HomeDentists from '@/components/sections/home/HomeDentists';
@@ -17,9 +15,9 @@ import { SERVICES } from '@/lib/clinic-data';
 import { createMetadata } from '@/lib/seo';
 
 export const metadata: Metadata = createMetadata({
-  title: 'Estruturas Metálicas e Coberturas em Volta Redonda',
+  title: 'Caça vazamentos e desentupimento 24 horas',
   description:
-    'A BR GUEDES Engenharia e Montagem oferece serviços de fabricação e montagem de estruturas metálicas, telhados e coberturas em Volta Redonda, RJ.',
+    'Monarca Caça Vazamentos atende vazamentos, desentupimentos e manutenção geral em Caieiras e região, 24 horas por dia.',
   pathname: '/',
 });
 
@@ -38,11 +36,7 @@ export default function HomePage() {
       {/* SECTION 1: Hero */}
       <HomeHero />
 
-      {/* SECTION 2: Trust / Highlights */}
-      <HomeStats />
-      <HomeTestimonials />
-
-      {/* SECTION 3: Materials */}
+      {/* SECTION 2: Services */}
       <PinnedHorizontalTrack
         items={serviceTrackItems}
       title="Nossas soluções"

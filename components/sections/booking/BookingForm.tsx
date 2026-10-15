@@ -83,13 +83,13 @@ export default function BookingForm() {
 
         <div className="p-6 bg-paper/10 border border-mist/20 mb-8 space-y-2 font-body text-15">
           <div className="flex justify-between">
-            <span className="text-paper/60">Produto ou serviço:</span>
+            <span className="text-paper/60">Serviço hidráulico:</span>
             <span className="text-paper font-medium">
               {SERVICES.find((s) => s.slug === formData.service)?.name || formData.service}
             </span>
           </div>
           <div className="flex justify-between">
-            <span className="text-paper/60">Data de preferência:</span>
+            <span className="text-paper/60">Data desejada (opcional):</span>
             <span className="text-paper font-medium">{formData.preferredDate}</span>
           </div>
           <div className="flex justify-between">
@@ -137,10 +137,10 @@ export default function BookingForm() {
     >
       <div>
         <h3 className="font-display text-26 md:text-33 text-forest-ink mb-2">
-          Solicite um orçamento
+          Solicite atendimento
         </h3>
         <p className="font-body text-15 text-forest-ink/70">
-          Conte à equipe sobre o seu projeto de estruturas metálicas, telhados ou coberturas. Entraremos em contato para conversar sobre os próximos passos.
+          Conte à equipe sobre um vazamento, entupimento ou reparo hidráulico. O atendimento funciona 24 horas.
         </p>
       </div>
 
@@ -162,7 +162,7 @@ export default function BookingForm() {
           required
         />
         {errors.fullName && (
-          <span className="font-body text-13 text-[#66758A] transition-all duration-200">
+          <span className="font-body text-13 text-[#6F6F6F] transition-all duration-200">
             {errors.fullName}
           </span>
         )}
@@ -182,12 +182,12 @@ export default function BookingForm() {
               setFormData({ ...formData, phone: e.target.value });
               if (errors.phone) setErrors({ ...errors, phone: undefined });
             }}
-            placeholder="+55 24 98880-7841"
+            placeholder="+55 11 97547-5490"
             className="w-full px-4 py-3 text-15 focus:border-forest transition-colors"
             required
           />
           {errors.phone && (
-            <span className="font-body text-13 text-[#66758A]">{errors.phone}</span>
+            <span className="font-body text-13 text-[#6F6F6F]">{errors.phone}</span>
           )}
         </div>
 
@@ -208,7 +208,7 @@ export default function BookingForm() {
             required
           />
           {errors.email && (
-            <span className="font-body text-13 text-[#66758A]">{errors.email}</span>
+            <span className="font-body text-13 text-[#6F6F6F]">{errors.email}</span>
           )}
         </div>
       </div>
@@ -216,7 +216,7 @@ export default function BookingForm() {
       {/* Seleção de produto ou serviço */}
       <div className="flex flex-col space-y-1.5">
         <label htmlFor="service" className="font-body text-13 text-forest-ink/70">
-          Produto ou serviço <span className="text-forest">*</span>
+          Serviço hidráulico <span className="text-forest">*</span>
         </label>
         <select
           id="service"
@@ -229,7 +229,7 @@ export default function BookingForm() {
               {s.name}
             </option>
           ))}
-          <option value="general-enquiry">Orçamento para outro serviço</option>
+          <option value="general-enquiry">Outro serviço</option>
         </select>
       </div>
 
@@ -237,7 +237,7 @@ export default function BookingForm() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="flex flex-col space-y-1.5">
           <label htmlFor="preferredDate" className="font-body text-13 text-forest-ink/70">
-            Data de preferência <span className="text-forest">*</span>
+            Data desejada (opcional) <span className="text-forest">*</span>
           </label>
           <input
             id="preferredDate"
@@ -252,7 +252,7 @@ export default function BookingForm() {
             required
           />
           {errors.preferredDate && (
-            <span className="font-body text-13 text-[#66758A]">{errors.preferredDate}</span>
+            <span className="font-body text-13 text-[#6F6F6F]">{errors.preferredDate}</span>
           )}
         </div>
 
@@ -266,9 +266,9 @@ export default function BookingForm() {
             onChange={(e) => setFormData({ ...formData, preferredTime: e.target.value })}
             className="w-full px-4 py-3 text-15 focus:border-forest transition-colors bg-paper cursor-pointer"
           >
-            <option value="Manhã (08:00 – 12:00)">Manhã (08:00 – 12:00)</option>
-            <option value="Tarde (12:00 – 16:00)">Tarde (12:00 – 16:00)</option>
-            <option value="Fim da tarde (16:00 – 17:30)">Fim da tarde (16:00 – 17:30)</option>
+            <option value="Manhã (a combinar)">Manhã (a combinar)</option>
+            <option value="Tarde (a combinar)">Tarde (a combinar)</option>
+            <option value="Outro horário (a combinar)">Outro horário (a combinar)</option>
           </select>
         </div>
       </div>
@@ -283,7 +283,7 @@ export default function BookingForm() {
           rows={3}
           value={formData.notes}
           onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-          placeholder="Descreva o projeto, as dimensões ou o serviço que você procura."
+          placeholder="Descreva o vazamento, entupimento ou reparo hidráulico necessário."
           className="w-full px-4 py-3 text-15 focus:border-forest transition-colors resize-none"
         />
       </div>

@@ -9,32 +9,32 @@ import AnimateOnScroll from '@/components/motion/AnimateOnScroll';
 import { createMetadata } from '@/lib/seo';
 
 export const metadata: Metadata = createMetadata({
-  title: 'Solicite um orçamento',
+  title: 'Solicite atendimento 24 horas',
   description:
-    'Entre em contato com a BR GUEDES Engenharia e Montagem para solicitar um orçamento de estruturas metálicas, telhados ou coberturas em Volta Redonda, RJ.',
-  pathname: '/solicitar-orcamento/',
+    'Solicite um orçamento para caça vazamentos, desentupimento ou manutenção geral. Atendimento 24 horas em Caieiras e região.',
+  pathname: '/orcamento/',
 });
 
 const BOOKING_STEPS = [
   {
     step: 1,
-    title: 'Envie sua consulta',
-    description: 'Conte à equipe sobre o seu projeto e o serviço que você procura.',
+    title: 'Descreva o problema',
+    description: 'Informe o endereço, o tipo de problema e quando começou.',
   },
   {
     step: 2,
-    title: 'Análise da equipe',
-    description: 'Nossa equipe analisa sua consulta e verifica os detalhes.',
+    title: 'Avaliação do serviço',
+    description: 'A equipe avalia sua solicitação e confirma a disponibilidade.',
   },
   {
     step: 3,
     title: 'Entraremos em contato',
-    description: 'A equipe falará com você sobre o projeto e as próximas etapas.',
+    description: 'A equipe entrará em contato para combinar os próximos passos.',
   },
   {
     step: 4,
     title: 'Alinhamento das etapas',
-    description: 'Converse com a equipe para alinhar as próximas etapas.',
+    description: 'O serviço e o valor serão alinhados antes da execução.',
   },
 ];
 
@@ -44,17 +44,17 @@ export default function BookAppointmentPage() {
       {/* SECTION 1: Appointment Introduction */}
       <section className="py-16 md:py-24 border-b border-mist">
         <div className="max-w-site mx-auto px-6 md:px-12">
-          <Breadcrumbs items={[{ name: 'Solicitar orçamento', path: '/solicitar-orcamento/' }]} />
+          <Breadcrumbs items={[{ name: 'Solicitar atendimento', path: '/orcamento/' }]} />
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mt-8 items-start">
             <div className="lg:col-span-8">
               <AnimateOnScroll animation="fade-right" duration={0.8}>
                 <span className="font-body text-13 text-forest-ink/60 block mb-3 uppercase tracking-wider font-medium">
-                  Atendimento próximo
+                  Atendimento 24 horas
                 </span>
-                  <WordRevealH1 text="Solicite um orçamento para o seu projeto." />
+                  <WordRevealH1 text="Solicite atendimento hidráulico." />
                 <div className="mt-8">
-                  <ScrubbedParagraph text="Conte à BR GUEDES sobre as necessidades do seu projeto de estruturas metálicas, telhados ou coberturas." />
+                    <ScrubbedParagraph text="Conte à Monarca sobre vazamento, entupimento ou reparo hidráulico." />
                 </div>
               </AnimateOnScroll>
             </div>
@@ -64,10 +64,10 @@ export default function BookAppointmentPage() {
                 <div className="p-6 bg-paper border border-mist space-y-3 font-body text-13 text-forest-ink/80 shadow-sm">
                   <span className="font-medium text-forest block">Ligue para nossa equipe:</span>
                   <p className="text-forest-ink/70">
-                    Prefere falar diretamente conosco? Ligue durante o horário de funcionamento.
+                    O atendimento funciona 24 horas. Ligue para explicar o problema.
                   </p>
                   <a
-                    href="tel:+5524988807841"
+                    href={`tel:${CLINIC_INFO.contact.phone.replace(/[^0-9+]/g, '')}`}
                     className="font-display text-17 text-forest font-semibold block hover:underline"
                   >
                     {CLINIC_INFO.contact.phone}
@@ -147,12 +147,6 @@ export default function BookAppointmentPage() {
                       {CLINIC_INFO.contact.phone}
                     </a>
                   </div>
-                  <div>
-                    <span className="text-forest-ink/60 block">Telefone:</span>
-                    <a href={`tel:${CLINIC_INFO.contact.phone.replace(/[^0-9+]/g, '')}`} className="font-medium text-forest hover:underline">
-                      {CLINIC_INFO.contact.phone}
-                    </a>
-                  </div>
                 </div>
               </div>
             </AnimateOnScroll>
@@ -161,7 +155,7 @@ export default function BookAppointmentPage() {
             <AnimateOnScroll animation="fade-up" delay={0.2}>
               <div className="p-8 bg-paper border border-mist h-full shadow-sm">
                 <span className="font-body text-13 text-forest block mb-2 font-medium uppercase tracking-wider">Horários</span>
-                <h3 className="font-display text-21 text-forest-ink mb-4">Horário de funcionamento</h3>
+                <h3 className="font-display text-21 text-forest-ink mb-4">Horário de atendimento</h3>
                 <div className="space-y-1.5 font-body text-13 text-forest-ink/80">
                   {CLINIC_INFO.schedule.map((item) => (
                     <div key={item.day} className="flex justify-between">
@@ -179,7 +173,7 @@ export default function BookAppointmentPage() {
                 <span className="font-body text-13 text-forest block mb-2 font-medium uppercase tracking-wider">Localização</span>
                 <h3 className="font-display text-21 text-forest-ink mb-4">Endereço</h3>
                 <p className="font-body text-13 text-forest-ink/80 leading-relaxed mb-3">
-                  Estamos em Volta Redonda, RJ. Entre em contato para conversar sobre seu projeto.
+                  Atendimento 24 horas para caça vazamentos, desentupimento e manutenção.
                 </p>
               </div>
             </AnimateOnScroll>

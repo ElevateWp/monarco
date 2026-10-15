@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { CLINIC_INFO } from './clinic-data';
 
-export const BASE_URL = 'http://localhost:3001';
+export const BASE_URL = 'http://localhost:3000';
 
 export function createMetadata({
   title,
@@ -63,7 +63,7 @@ export function createMetadata({
 export function generateLocalBusinessSchema() {
   return {
     '@context': 'https://schema.org',
-    '@type': 'GeneralContractor',
+    '@type': 'Plumber',
     '@id': `${BASE_URL}/#business`,
     name: CLINIC_INFO.name,
     legalName: CLINIC_INFO.legalName,
@@ -111,7 +111,7 @@ export function generateMedicalProcedureSchema(serviceName: string, description:
     '@type': 'Service',
     name: serviceName,
     description: description,
-    serviceType: 'Fabricação e montagem de estruturas metálicas',
+    serviceType: 'Caça vazamentos, desentupimento e manutenção hidráulica',
     url: `${BASE_URL}${url}`,
     provider: {
       '@type': 'LocalBusiness',

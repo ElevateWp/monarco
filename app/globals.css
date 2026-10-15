@@ -5,18 +5,18 @@
 @layer base {
   :root {
     --paper: #FFFFFF; /* Main Background */
-    --paper-secondary: #F2F6FC;
-    --forest: #10264B;
-    --forest-ink: #18243A;
-    --black-accent: #10264B;
-    --secondary-text: #66758A;
-    --primary-brand: #E5242A;
-    --brand-hover: #FF3B35;
-    --red-accent: #E5242A;
-    --navy-accent: #1559B8;
-    --soft-blue: #DCEBFA;
-    --lime: #F5C542;
-    --mist: #D9E2EF;
+    --paper-secondary: #FFF5EF;
+    --forest: #1A1A1A;
+    --forest-ink: #222222;
+    --black-accent: #111111;
+    --secondary-text: #6F6F6F;
+    --primary-brand: #FF681F;
+    --brand-hover: #F4511E;
+    --red-accent: #F4511E;
+    --navy-accent: #F4511E;
+    --soft-blue: #FFE2D1;
+    --lime: #F4511E;
+    --mist: #E8DCD5;
     
     --font-display: "Instrument Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -68,7 +68,7 @@
   textarea:focus-visible,
   summary:focus-visible,
   [tabindex]:focus-visible {
-    outline: 2px solid var(--forest);
+    outline: 2px solid var(--primary-brand);
     outline-offset: 3px;
   }
 
